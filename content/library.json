@@ -3,6 +3,22 @@
   "displayName": "admin",
   "podcasts": [
     {
+      "itunesId": "1850969703",
+      "title": "The Weekend Intelligence from The Economist",
+      "author": "The Economist",
+      "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/de/8e/47/de8e4730-8fa1-494d-7de3-d89938920212/mza_12925000352922195150.jpeg/600x600bb.jpg",
+      "feedUrl": "https://feeds.acast.com/public/shows/6909b7a46204e248db2b1b29",
+      "itunesUrl": "https://podcasts.apple.com/us/podcast/the-weekend-intelligence-from-the-economist/id1850969703?uo=4",
+      "artistUrl": null,
+      "overallRating": 4,
+      "reviewText": null,
+      "isFavorite": false,
+      "addedAt": "2026-04-16T21:46:12.547Z",
+      "updatedAt": "2026-04-16T21:46:16.047Z",
+      "customRatings": [],
+      "favoriteEpisodes": []
+    },
+    {
       "itunesId": "1739582836",
       "title": "Money Stuff: The Podcast",
       "author": "Bloomberg",
