@@ -1,20 +1,51 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
-import { ArrowUpDown, Star } from 'lucide-react';
+import { ArrowUpDown, Loader2, Star } from 'lucide-react';
 import Header from '@/components/Header';
 import PodcastEditor from '@/components/PodcastEditor';
 import RatingsChart from '@/components/RatingsChart';
 import { LibraryProvider, useLibrary } from '@/lib/library';
+import { LIBRARY_RAW_URL } from '@/lib/github';
 import type { Library } from '@/types';
-import seedLibrary from '../../content/library.json';
 
 type SortOption = 'recent' | 'name' | 'rating' | string;
 
 export default function Home() {
+  const [library, setLibrary] = useState<Library | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Append a cache-busting param so visitors always see the latest data,
+    // bypassing raw.githubusercontent.com's CDN cache (typically ~5 min).
+    fetch(`${LIBRARY_RAW_URL}?t=${Date.now()}`)
+      .then((r) => {
+        if (!r.ok) throw new Error(`Could not load library (${r.status})`);
+        return r.json() as Promise<Library>;
+      })
+      .then(setLibrary)
+      .catch((err) => setError((err as Error).message));
+  }, []);
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-sm text-red-400">{error}</p>
+      </div>
+    );
+  }
+
+  if (!library) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-foreground">
+        <Loader2 className="animate-spin" size={24} />
+      </div>
+    );
+  }
+
   return (
-    <LibraryProvider initialLibrary={seedLibrary as Library} readOnly>
+    <LibraryProvider initialLibrary={library} readOnly>
       <HomeView />
     </LibraryProvider>
   );
@@ -151,8 +182,7 @@ function HomeView() {
 
         {podcasts.length === 0 ? (
           <div className="text-center py-16 bg-background-secondary rounded-lg">
-            <p className="text-foreground mb-2">No podcasts yet</p>
-            <p className="text-sm text-foreground">Search above to add your first podcast</p>
+            <p className="text-foreground mb-2">No podcasts in library</p>
           </div>
         ) : (
           <div className="space-y-4">

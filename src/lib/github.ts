@@ -9,6 +9,9 @@ export const GITHUB_REPO = 'podcast-shelf-personal';
 export const LIBRARY_PATH = 'content/library.json';
 export const GITHUB_BRANCH = 'main';
 
+/** Public, no-auth URL for reading the latest library.json directly from GitHub's CDN. */
+export const LIBRARY_RAW_URL = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}/${LIBRARY_PATH}`;
+
 export function getStoredPat(): string | null {
   if (typeof window === 'undefined') return null;
   return localStorage.getItem(PAT_KEY);
