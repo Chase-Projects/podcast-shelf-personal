@@ -12,7 +12,7 @@ interface Props {
 }
 
 export default function CustomRatings({ itunesId, ratings }: Props) {
-  const { library, addCustomRating, updateCustomRating, removeCustomRating } = useLibrary();
+  const { library, readOnly, addCustomRating, updateCustomRating, removeCustomRating } = useLibrary();
   const [isAdding, setIsAdding] = useState(false);
   const [newCategory, setNewCategory] = useState('');
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -39,6 +39,10 @@ export default function CustomRatings({ itunesId, ratings }: Props) {
     c.toLowerCase().includes(newCategory.toLowerCase())
   );
 
+  if (readOnly && ratings.length === 0) {
+    return <p className="text-sm text-foreground italic">None</p>;
+  }
+
   return (
     <div className="space-y-3">
       {ratings.map((rating) => (
@@ -47,20 +51,23 @@ export default function CustomRatings({ itunesId, ratings }: Props) {
           <div className="flex items-center gap-2">
             <StarRating
               rating={rating.rating}
-              onChange={(r) => updateCustomRating(itunesId, rating.category, r)}
+              onChange={readOnly ? undefined : (r) => updateCustomRating(itunesId, rating.category, r)}
+              readonly={readOnly}
               size={16}
             />
-            <button
-              onClick={() => removeCustomRating(itunesId, rating.category)}
-              className="p-1 text-foreground hover:text-red-400 transition-colors"
-            >
-              <X size={14} />
-            </button>
+            {!readOnly && (
+              <button
+                onClick={() => removeCustomRating(itunesId, rating.category)}
+                className="p-1 text-foreground hover:text-red-400 transition-colors"
+              >
+                <X size={14} />
+              </button>
+            )}
           </div>
         </div>
       ))}
 
-      {isAdding ? (
+      {!readOnly && (isAdding ? (
         <div className="relative">
           <div className="flex items-center gap-2">
             <div className="flex-1 relative">
@@ -143,7 +150,7 @@ export default function CustomRatings({ itunesId, ratings }: Props) {
             </div>
           )}
         </div>
-      )}
+      ))}
     </div>
   );
 }

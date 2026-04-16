@@ -16,7 +16,7 @@ interface Props {
 }
 
 export default function PodcastEditor({ podcast, expanded, onToggle }: Props) {
-  const { setOverallRating, setReviewText, toggleFavorite, removePodcast } = useLibrary();
+  const { readOnly, setOverallRating, setReviewText, toggleFavorite, removePodcast } = useLibrary();
   const [reviewDraft, setReviewDraft] = useState(podcast.reviewText || '');
 
   useEffect(() => {
@@ -78,7 +78,8 @@ export default function PodcastEditor({ podcast, expanded, onToggle }: Props) {
                 <label className="block text-sm text-foreground mb-2">Overall Rating</label>
                 <StarRating
                   rating={podcast.overallRating}
-                  onChange={(r) => setOverallRating(podcast.itunesId, r)}
+                  onChange={readOnly ? undefined : (r) => setOverallRating(podcast.itunesId, r)}
+                  readonly={readOnly}
                   size={24}
                 />
               </div>
@@ -88,17 +89,23 @@ export default function PodcastEditor({ podcast, expanded, onToggle }: Props) {
                 <CustomRatings itunesId={podcast.itunesId} ratings={podcast.customRatings} />
               </div>
 
-              <div>
-                <label className="block text-sm text-foreground mb-2">Review</label>
-                <textarea
-                  value={reviewDraft}
-                  onChange={(e) => setReviewDraft(e.target.value)}
-                  onBlur={() => setReviewText(podcast.itunesId, reviewDraft)}
-                  placeholder="Write your thoughts..."
-                  className="w-full text-sm resize-none"
-                  rows={3}
-                />
-              </div>
+              {(!readOnly || reviewDraft) && (
+                <div>
+                  <label className="block text-sm text-foreground mb-2">Review</label>
+                  {readOnly ? (
+                    <p className="text-sm text-foreground-bright whitespace-pre-wrap">{reviewDraft}</p>
+                  ) : (
+                    <textarea
+                      value={reviewDraft}
+                      onChange={(e) => setReviewDraft(e.target.value)}
+                      onBlur={() => setReviewText(podcast.itunesId, reviewDraft)}
+                      placeholder="Write your thoughts..."
+                      className="w-full text-sm resize-none"
+                      rows={3}
+                    />
+                  )}
+                </div>
+              )}
             </div>
 
             <div>
@@ -111,24 +118,33 @@ export default function PodcastEditor({ podcast, expanded, onToggle }: Props) {
             </div>
           </div>
 
-          <div className="mt-4 pt-4 border-t border-border flex items-center justify-between">
-            <button
-              onClick={() => toggleFavorite(podcast.itunesId)}
-              className={`flex items-center gap-1.5 text-sm transition-colors ${
-                podcast.isFavorite ? 'text-accent' : 'text-foreground hover:text-accent'
-              }`}
-            >
-              <Star size={16} fill={podcast.isFavorite ? 'currentColor' : 'none'} />
-              {podcast.isFavorite ? 'Favorited' : 'Add to Favorites'}
-            </button>
-            <button
-              onClick={handleDelete}
-              className="flex items-center gap-1 text-sm text-red-400 hover:text-red-300 transition-colors"
-            >
-              <Trash2 size={14} />
-              Remove from library
-            </button>
-          </div>
+          {!readOnly ? (
+            <div className="mt-4 pt-4 border-t border-border flex items-center justify-between">
+              <button
+                onClick={() => toggleFavorite(podcast.itunesId)}
+                className={`flex items-center gap-1.5 text-sm transition-colors ${
+                  podcast.isFavorite ? 'text-accent' : 'text-foreground hover:text-accent'
+                }`}
+              >
+                <Star size={16} fill={podcast.isFavorite ? 'currentColor' : 'none'} />
+                {podcast.isFavorite ? 'Favorited' : 'Add to Favorites'}
+              </button>
+              <button
+                onClick={handleDelete}
+                className="flex items-center gap-1 text-sm text-red-400 hover:text-red-300 transition-colors"
+              >
+                <Trash2 size={14} />
+                Remove from library
+              </button>
+            </div>
+          ) : podcast.isFavorite && (
+            <div className="mt-4 pt-4 border-t border-border">
+              <span className="flex items-center gap-1.5 text-sm text-accent">
+                <Star size={16} fill="currentColor" />
+                Favorited
+              </span>
+            </div>
+          )}
         </div>
       )}
     </div>

@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default function FavoriteEpisodes({ itunesId, podcastName, episodes }: Props) {
-  const { addFavoriteEpisode, removeFavoriteEpisode } = useLibrary();
+  const { readOnly, addFavoriteEpisode, removeFavoriteEpisode } = useLibrary();
   const [isAdding, setIsAdding] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<ITunesEpisode[]>([]);
@@ -85,6 +85,10 @@ export default function FavoriteEpisodes({ itunesId, podcastName, episodes }: Pr
   const getITunesSearchUrl = (episodeTitle: string) =>
     `https://podcasts.apple.com/search?term=${encodeURIComponent(`${podcastName} ${episodeTitle}`)}`;
 
+  if (readOnly && episodes.length === 0) {
+    return <p className="text-sm text-foreground italic">No favorite episodes</p>;
+  }
+
   return (
     <div className="space-y-3">
       {episodes.map((episode) => (
@@ -109,16 +113,18 @@ export default function FavoriteEpisodes({ itunesId, podcastName, episodes }: Pr
               Find on Apple Podcasts
             </a>
           </div>
-          <button
-            onClick={() => removeFavoriteEpisode(itunesId, episode.title)}
-            className="p-1 text-foreground hover:text-red-400 transition-colors"
-          >
-            <X size={14} />
-          </button>
+          {!readOnly && (
+            <button
+              onClick={() => removeFavoriteEpisode(itunesId, episode.title)}
+              className="p-1 text-foreground hover:text-red-400 transition-colors"
+            >
+              <X size={14} />
+            </button>
+          )}
         </div>
       ))}
 
-      {isAdding ? (
+      {!readOnly && (isAdding ? (
         <div className="space-y-3 p-3 bg-background-tertiary rounded-lg">
           {!manualMode ? (
             <>
@@ -236,7 +242,7 @@ export default function FavoriteEpisodes({ itunesId, podcastName, episodes }: Pr
           <Plus size={14} />
           Add favorite episode
         </button>
-      )}
+      ))}
     </div>
   );
 }
