@@ -462,9 +462,32 @@
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2025-12-17T00:19:51.788Z",
-      "updatedAt": "2025-12-17T00:33:57.847Z",
+      "updatedAt": "2026-04-17T01:59:34.276Z",
       "customRatings": [],
-      "favoriteEpisodes": []
+      "favoriteEpisodes": [
+        {
+          "title": "Killing the ants",
+          "number": null,
+          "notes": null,
+          "addedAt": "2026-04-17T01:59:16.141Z",
+          "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/7d/e8/b7/7de8b7e2-a5a4-d83f-c28c-c8bf8f184fd2/mza_13334260826432355993.jpg/600x600bb.jpg"
+        },
+        {
+          "title": "Seeing more whole",
+          "number": null,
+          "notes": null,
+          "addedAt": "2026-04-17T01:59:24.125Z",
+          "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/db/00/76/db0076af-3e89-025b-0116-cda72c32036c/mza_5524744143404807431.jpg/600x600bb.jpg",
+          "isGlobalFavorite": true
+        },
+        {
+          "title": "Why should ethical anti-realists do ethics?",
+          "number": null,
+          "notes": null,
+          "addedAt": "2026-04-17T01:59:31.360Z",
+          "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/47/fc/c0/47fcc08c-5535-8263-3fc8-08c76a0f6844/mza_7762510579478878656.jpg/600x600bb.jpg"
+        }
+      ]
     },
     {
       "itunesId": "1696998316",
