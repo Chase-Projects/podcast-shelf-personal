@@ -3,6 +3,27 @@
   "displayName": "admin",
   "podcasts": [
     {
+      "itunesId": "557975157",
+      "title": "Very Bad Wizards",
+      "author": "Tamler Sommers & David Pizarro",
+      "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts125/v4/ec/81/05/ec810579-2ae9-70c4-2e06-a6e817063a1b/mza_8507663316150949613.jpg/600x600bb.jpg",
+      "feedUrl": "https://rss.libsyn.com/shows/474285/destinations/4022211.xml",
+      "itunesUrl": "https://podcasts.apple.com/us/podcast/very-bad-wizards/id557975157?uo=4",
+      "artistUrl": null,
+      "overallRating": 1,
+      "reviewText": null,
+      "isFavorite": false,
+      "addedAt": "2026-04-17T07:17:15.299Z",
+      "updatedAt": "2026-04-17T07:17:30.916Z",
+      "customRatings": [
+        {
+          "category": "Hosts",
+          "rating": 1
+        }
+      ],
+      "favoriteEpisodes": []
+    },
+    {
       "itunesId": "1244649384",
       "title": "LeVar Burton Reads",
       "author": "LeVar Burton and Stitcher",
@@ -10,11 +31,11 @@
       "feedUrl": "https://feeds.simplecast.com/LDNgBXht",
       "itunesUrl": "https://podcasts.apple.com/us/podcast/levar-burton-reads/id1244649384?uo=4",
       "artistUrl": "https://podcasts.apple.com/us/artist/stitcher/1233903520?uo=4",
-      "overallRating": null,
+      "overallRating": 3.5,
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2026-04-17T07:05:18.681Z",
-      "updatedAt": "2026-04-17T07:05:18.681Z",
+      "updatedAt": "2026-04-17T07:17:58.965Z",
       "customRatings": [],
       "favoriteEpisodes": []
     },
@@ -35,22 +56,6 @@
       "favoriteEpisodes": []
     },
     {
-      "itunesId": "1626170733",
-      "title": "I Am The Wiz Film Club",
-      "author": "The Wiz",
-      "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts116/v4/f6/50/b0/f650b093-02f8-2d7f-9d7f-1bf73426e769/mza_14674028322652003594.jpg/600x600bb.jpg",
-      "feedUrl": "https://anchor.fm/s/11e6bcdc/podcast/rss",
-      "itunesUrl": "https://podcasts.apple.com/us/podcast/i-am-the-wiz-film-club/id1626170733?uo=4",
-      "artistUrl": null,
-      "overallRating": null,
-      "reviewText": null,
-      "isFavorite": false,
-      "addedAt": "2026-04-17T06:59:27.831Z",
-      "updatedAt": "2026-04-17T06:59:27.831Z",
-      "customRatings": [],
-      "favoriteEpisodes": []
-    },
-    {
       "itunesId": "1002937870",
       "title": "Dear Hank & John",
       "author": "Complexly",
@@ -58,11 +63,11 @@
       "feedUrl": "https://rss.art19.com/dear-hank-john",
       "itunesUrl": "https://podcasts.apple.com/us/podcast/dear-hank-john/id1002937870?uo=4",
       "artistUrl": "https://podcasts.apple.com/us/artist/hank-green-and-john-green/1007650168?uo=4",
-      "overallRating": null,
+      "overallRating": 2.5,
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2026-04-17T06:59:11.681Z",
-      "updatedAt": "2026-04-17T06:59:11.681Z",
+      "updatedAt": "2026-04-17T07:20:44.434Z",
       "customRatings": [],
       "favoriteEpisodes": []
     },
@@ -90,11 +95,11 @@
       "feedUrl": "https://feeds.simplecast.com/6HKOhNgS",
       "itunesUrl": "https://podcasts.apple.com/us/podcast/hard-fork/id1528594034?uo=4",
       "artistUrl": "https://podcasts.apple.com/us/artist/the-new-york-times/121664449?uo=4",
-      "overallRating": null,
+      "overallRating": 2.5,
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2026-04-17T06:58:04.397Z",
-      "updatedAt": "2026-04-17T06:58:04.397Z",
+      "updatedAt": "2026-04-17T07:21:22.698Z",
       "customRatings": [],
       "favoriteEpisodes": []
     },
@@ -106,11 +111,11 @@
       "feedUrl": "https://rss.art19.com/scishow-tangents-",
       "itunesUrl": "https://podcasts.apple.com/us/podcast/scishow-tangents/id1441251826?uo=4",
       "artistUrl": null,
-      "overallRating": null,
+      "overallRating": 2.5,
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2026-04-17T06:55:17.780Z",
-      "updatedAt": "2026-04-17T06:55:17.780Z",
+      "updatedAt": "2026-04-17T07:18:19.016Z",
       "customRatings": [],
       "favoriteEpisodes": []
     },
@@ -122,12 +127,17 @@
       "feedUrl": "https://feeds.simplecast.com/YRS1HazA",
       "itunesUrl": "https://podcasts.apple.com/us/podcast/vs/id1249005448?uo=4",
       "artistUrl": null,
-      "overallRating": null,
+      "overallRating": 3,
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2026-04-17T06:54:51.581Z",
-      "updatedAt": "2026-04-17T06:54:51.581Z",
-      "customRatings": [],
+      "updatedAt": "2026-04-17T07:24:16.849Z",
+      "customRatings": [
+        {
+          "category": "Hosts",
+          "rating": 4
+        }
+      ],
       "favoriteEpisodes": []
     },
     {
@@ -154,11 +164,11 @@
       "feedUrl": "https://feeds.megaphone.fm/QCD6036500916",
       "itunesUrl": "https://podcasts.apple.com/us/podcast/philosophize-this/id659155419?uo=4",
       "artistUrl": null,
-      "overallRating": null,
+      "overallRating": 2,
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2026-04-17T06:54:30.681Z",
-      "updatedAt": "2026-04-17T06:54:30.681Z",
+      "updatedAt": "2026-04-17T07:22:23.799Z",
       "customRatings": [],
       "favoriteEpisodes": []
     },
@@ -170,11 +180,11 @@
       "feedUrl": "https://feeds.acast.com/public/shows/670453211a3de581c6843802",
       "itunesUrl": "https://podcasts.apple.com/us/podcast/conversations-with-people-who-hate-me/id1257821731?uo=4",
       "artistUrl": "https://podcasts.apple.com/us/artist/night-vale-presents/718704794?uo=4",
-      "overallRating": null,
+      "overallRating": 2,
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2026-04-17T06:53:53.498Z",
-      "updatedAt": "2026-04-17T06:53:53.498Z",
+      "updatedAt": "2026-04-17T07:20:36.650Z",
       "customRatings": [],
       "favoriteEpisodes": []
     },
@@ -218,12 +228,17 @@
       "feedUrl": "https://feeds.megaphone.fm/tetragrammaton",
       "itunesUrl": "https://podcasts.apple.com/us/podcast/tetragrammaton-with-rick-rubin/id1671669052?uo=4",
       "artistUrl": null,
-      "overallRating": null,
+      "overallRating": 2.5,
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2026-04-17T06:49:13.429Z",
-      "updatedAt": "2026-04-17T06:49:13.429Z",
-      "customRatings": [],
+      "updatedAt": "2026-04-17T07:23:39.450Z",
+      "customRatings": [
+        {
+          "category": "Ads",
+          "rating": 0.5
+        }
+      ],
       "favoriteEpisodes": []
     },
     {
@@ -250,11 +265,11 @@
       "feedUrl": "https://access.acast.com/rss/65ef1d0f3e599300175a2a58",
       "itunesUrl": "https://podcasts.apple.com/us/podcast/the-modi-raj-from-the-economist/id1738484939?uo=4",
       "artistUrl": null,
-      "overallRating": null,
+      "overallRating": 3.5,
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2026-04-17T06:46:04.028Z",
-      "updatedAt": "2026-04-17T06:46:04.028Z",
+      "updatedAt": "2026-04-17T07:24:37.265Z",
       "customRatings": [],
       "favoriteEpisodes": []
     },
@@ -298,11 +313,11 @@
       "feedUrl": "https://access.acast.com/rss/8457b14f-24d4-4f1a-a274-e6188315170b",
       "itunesUrl": "https://podcasts.apple.com/us/podcast/editors-picks-from-the-economist/id313848583?uo=4",
       "artistUrl": "https://podcasts.apple.com/us/artist/the-economist/272651214?uo=4",
-      "overallRating": null,
+      "overallRating": 3,
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2026-04-17T06:45:01.262Z",
-      "updatedAt": "2026-04-17T06:45:01.262Z",
+      "updatedAt": "2026-04-17T07:21:00.033Z",
       "customRatings": [],
       "favoriteEpisodes": []
     },
@@ -314,11 +329,11 @@
       "feedUrl": "https://access.acast.com/rss/6660d0875259600012b78f75",
       "itunesUrl": "https://podcasts.apple.com/us/podcast/boom-from-the-economist/id1752139463?uo=4",
       "artistUrl": null,
-      "overallRating": null,
+      "overallRating": 3.5,
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2026-04-17T06:44:17.477Z",
-      "updatedAt": "2026-04-17T06:44:17.477Z",
+      "updatedAt": "2026-04-17T07:20:25.666Z",
       "customRatings": [],
       "favoriteEpisodes": []
     },
@@ -330,12 +345,17 @@
       "feedUrl": "https://rss.art19.com/hello-puzzlers",
       "itunesUrl": "https://podcasts.apple.com/us/podcast/hello-puzzlers/id1709071922?uo=4",
       "artistUrl": null,
-      "overallRating": null,
+      "overallRating": 2.5,
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2026-04-17T06:44:01.644Z",
-      "updatedAt": "2026-04-17T06:44:01.644Z",
-      "customRatings": [],
+      "updatedAt": "2026-04-17T07:23:54.532Z",
+      "customRatings": [
+        {
+          "category": "Ads",
+          "rating": 0.5
+        }
+      ],
       "favoriteEpisodes": []
     },
     {
@@ -382,8 +402,13 @@
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2025-12-17T00:43:35.500Z",
-      "updatedAt": "2025-12-17T02:28:30.542Z",
-      "customRatings": [],
+      "updatedAt": "2026-04-17T07:22:57.649Z",
+      "customRatings": [
+        {
+          "category": "Hosts",
+          "rating": 2
+        }
+      ],
       "favoriteEpisodes": []
     },
     {
@@ -414,8 +439,13 @@
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2025-12-17T00:39:33.333Z",
-      "updatedAt": "2025-12-17T00:39:40.117Z",
-      "customRatings": [],
+      "updatedAt": "2026-04-17T07:19:56.333Z",
+      "customRatings": [
+        {
+          "category": "Format",
+          "rating": 2.5
+        }
+      ],
       "favoriteEpisodes": []
     },
     {
@@ -554,11 +584,11 @@
       "feedUrl": "https://publicfeeds.net/f/6232/new-yorker-fiction",
       "itunesUrl": "https://podcasts.apple.com/us/podcast/the-new-yorker-fiction/id256945396?uo=4",
       "artistUrl": "https://podcasts.apple.com/us/artist/the-new-yorker/331376890?uo=4",
-      "overallRating": 4.5,
+      "overallRating": 4,
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2025-12-17T00:18:09.123Z",
-      "updatedAt": "2025-12-17T00:35:46.630Z",
+      "updatedAt": "2026-04-17T07:24:33.815Z",
       "customRatings": [],
       "favoriteEpisodes": []
     },
@@ -638,8 +668,13 @@
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2025-12-17T00:18:57.027Z",
-      "updatedAt": "2025-12-17T00:35:20.578Z",
-      "customRatings": [],
+      "updatedAt": "2026-04-17T07:22:40.348Z",
+      "customRatings": [
+        {
+          "category": "Hosts",
+          "rating": 4.5
+        }
+      ],
       "favoriteEpisodes": []
     },
     {
@@ -734,8 +769,13 @@
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2025-12-17T00:16:01.580Z",
-      "updatedAt": "2025-12-17T00:34:28.274Z",
-      "customRatings": [],
+      "updatedAt": "2026-04-17T07:18:53.816Z",
+      "customRatings": [
+        {
+          "category": "Format",
+          "rating": 4
+        }
+      ],
       "favoriteEpisodes": []
     },
     {
@@ -746,12 +786,17 @@
       "feedUrl": "https://feeds.megaphone.fm/awww",
       "itunesUrl": "https://podcasts.apple.com/us/podcast/a-way-with-words-language-linguistics-and-callers/id121493640?uo=4",
       "artistUrl": null,
-      "overallRating": 3,
+      "overallRating": 3.5,
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2025-12-17T00:15:50.539Z",
-      "updatedAt": "2025-12-17T00:34:24.510Z",
-      "customRatings": [],
+      "updatedAt": "2026-04-17T07:20:16.999Z",
+      "customRatings": [
+        {
+          "category": "Hosts",
+          "rating": 4
+        }
+      ],
       "favoriteEpisodes": []
     },
     {
@@ -762,11 +807,11 @@
       "feedUrl": "https://feeds.megaphone.fm/onassignment",
       "itunesUrl": "https://podcasts.apple.com/us/podcast/on-assignment/id1830530855?uo=4",
       "artistUrl": null,
-      "overallRating": 3,
+      "overallRating": 3.5,
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2025-12-17T00:19:34.952Z",
-      "updatedAt": "2025-12-17T00:34:14.907Z",
+      "updatedAt": "2026-04-17T07:22:17.199Z",
       "customRatings": [],
       "favoriteEpisodes": []
     },
@@ -794,11 +839,11 @@
       "feedUrl": "https://rss.buzzsprout.com/2034731.rss",
       "itunesUrl": "https://podcasts.apple.com/us/podcast/joe-carlsmith-audio/id1648436675?uo=4",
       "artistUrl": null,
-      "overallRating": 4,
+      "overallRating": 5,
       "reviewText": null,
-      "isFavorite": false,
+      "isFavorite": true,
       "addedAt": "2025-12-17T00:19:51.788Z",
-      "updatedAt": "2026-04-17T01:59:34.276Z",
+      "updatedAt": "2026-04-17T07:21:56.001Z",
       "customRatings": [],
       "favoriteEpisodes": [
         {
@@ -897,12 +942,17 @@
       "feedUrl": "https://feeds.feedburner.com/everythingisalive",
       "itunesUrl": "https://podcasts.apple.com/us/podcast/everything-is-alive/id1388419519?uo=4",
       "artistUrl": "https://podcasts.apple.com/us/artist/radiotopia/850139119?uo=4",
-      "overallRating": 3.5,
+      "overallRating": 4,
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2025-12-17T00:20:39.542Z",
-      "updatedAt": "2025-12-17T00:33:19.666Z",
-      "customRatings": [],
+      "updatedAt": "2026-04-17T07:21:14.349Z",
+      "customRatings": [
+        {
+          "category": "Hosts",
+          "rating": 4.5
+        }
+      ],
       "favoriteEpisodes": []
     },
     {
@@ -965,7 +1015,7 @@
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2025-12-17T00:21:37.575Z",
-      "updatedAt": "2025-12-17T00:32:49.144Z",
+      "updatedAt": "2026-04-17T07:22:12.566Z",
       "customRatings": [],
       "favoriteEpisodes": []
     },
@@ -1117,11 +1167,11 @@
       "feedUrl": "https://feeds.simplecast.com/wgl4xEgL",
       "itunesUrl": "https://podcasts.apple.com/us/podcast/econtalk/id135066958?uo=4",
       "artistUrl": "https://podcasts.apple.com/us/artist/hoover-institution/1294494739?uo=4",
-      "overallRating": 1,
+      "overallRating": 0.5,
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2025-12-17T00:25:49.926Z",
-      "updatedAt": "2025-12-17T00:29:48.108Z",
+      "updatedAt": "2026-04-17T07:20:51.282Z",
       "customRatings": [
         {
           "category": "Guests",
@@ -1163,11 +1213,11 @@
       "feedUrl": "https://feeds.megaphone.fm/reutersworldnews",
       "itunesUrl": "https://podcasts.apple.com/us/podcast/reuters-world-news/id1665219519?uo=4",
       "artistUrl": null,
-      "overallRating": 3,
+      "overallRating": 4,
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2025-12-16T08:26:00.284Z",
-      "updatedAt": "2025-12-16T08:26:05.181Z",
+      "updatedAt": "2026-04-17T07:22:30.216Z",
       "customRatings": [],
       "favoriteEpisodes": []
     },
@@ -1183,10 +1233,18 @@
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2025-12-16T08:22:31.069Z",
-      "updatedAt": "2025-12-16T08:25:12.720Z",
+      "updatedAt": "2026-04-17T07:19:36.650Z",
       "customRatings": [
         {
-          "category": "Test",
+          "category": "Hosts",
+          "rating": 3
+        },
+        {
+          "category": "Guests",
+          "rating": 3.5
+        },
+        {
+          "category": "Format",
           "rating": 3.5
         }
       ],
