@@ -1,12 +1,15 @@
 'use client';
 
+import Link from 'next/link';
+
 interface RatingsChartProps {
   ratings: (number | null)[];
   title?: string;
   height?: number;
+  category?: string;
 }
 
-export default function RatingsChart({ ratings, title, height = 120 }: RatingsChartProps) {
+export default function RatingsChart({ ratings, title, height = 120, category }: RatingsChartProps) {
   const validRatings = ratings.filter((r): r is number => r !== null);
   if (validRatings.length === 0) return null;
 
@@ -39,8 +42,17 @@ export default function RatingsChart({ ratings, title, height = 120 }: RatingsCh
       <div className="flex-1 flex items-end justify-between gap-1" style={{ minHeight: height }}>
         {distribution.map(({ star, count, percentage }) => {
           const barHeight = maxCount > 0 ? (count / maxCount) * 100 : 0;
+          const base = category
+            ? `/ratings?category=${encodeURIComponent(category)}`
+            : '/ratings';
+          const href = count > 0 ? `${base}#tier-${star}` : base;
           return (
-            <div key={star} className="flex-1 flex flex-col items-center group relative">
+            <Link
+              key={star}
+              href={href}
+              onClick={(e) => e.stopPropagation()}
+              className="flex-1 flex flex-col items-center group relative"
+            >
               <div className="absolute bottom-full mb-2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
                 <div className="bg-background-tertiary border border-border rounded px-2 py-1 text-xs whitespace-nowrap shadow-lg">
                   <div className="text-foreground-bright font-medium">{formatStar(star)} stars</div>
@@ -61,7 +73,7 @@ export default function RatingsChart({ ratings, title, height = 120 }: RatingsCh
               <div className="text-[10px] text-foreground mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
                 {formatStar(star)}
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>

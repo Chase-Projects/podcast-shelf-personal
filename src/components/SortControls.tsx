@@ -32,7 +32,6 @@ export default function SortControls({
   onRatingTypeChange,
   customCategories,
 }: Props) {
-  const ratingActive = ordering === 'bestToWorst' || ordering === 'worstToBest';
   return (
     <div className="flex flex-wrap items-center gap-2">
       <label className="flex items-center gap-1.5 text-xs text-foreground">
@@ -54,8 +53,7 @@ export default function SortControls({
         <select
           value={ratingType}
           onChange={(e) => onRatingTypeChange(e.target.value)}
-          disabled={!ratingActive}
-          className="text-sm py-1.5 px-3 bg-background-secondary border border-border rounded disabled:opacity-50 disabled:cursor-not-allowed"
+          className="text-sm py-1.5 px-3 bg-background-secondary border border-border rounded"
         >
           <option value="overall">Overall</option>
           {customCategories.map((c) => (

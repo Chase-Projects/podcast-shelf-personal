@@ -48,7 +48,7 @@ export async function lookupEpisodes(
       duration: ep.trackTimeMillis,
       releaseDate: ep.releaseDate,
       description: ep.description,
-      episodeUrl: ep.episodeUrl ?? ep.trackViewUrl,
+      episodeUrl: ep.trackViewUrl ?? ep.episodeUrl,
       artworkUrl: ep.artworkUrl600 ?? ep.artworkUrl160 ?? ep.artworkUrl60,
     }));
   episodes.sort((a, b) => {

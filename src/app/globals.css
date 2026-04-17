@@ -65,17 +65,19 @@ a:hover {
   color: var(--accent-hover);
 }
 
-input, textarea, select {
-  background: var(--background-secondary);
-  border: 1px solid var(--border);
-  color: var(--foreground-bright);
-  border-radius: 4px;
-  padding: 0.5rem 0.75rem;
-}
+@layer base {
+  input, textarea, select {
+    background: var(--background-secondary);
+    border: 1px solid var(--border);
+    color: var(--foreground-bright);
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+  }
 
-input:focus, textarea:focus, select:focus {
-  outline: none;
-  border-color: var(--accent);
+  input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
 }
 
 button {
