@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowUpDown, Loader2, LogOut, Star } from 'lucide-react';
+import { Loader2, LogOut, Search, Star } from 'lucide-react';
 import type { Library } from '@/types';
 import { LibraryProvider, useLibrary } from '@/lib/library';
 import {
@@ -16,8 +16,9 @@ import SaveButton from '@/components/SaveButton';
 import PodcastSearch from '@/components/PodcastSearch';
 import PodcastEditor from '@/components/PodcastEditor';
 import ImportExport from '@/components/ImportExport';
-
-type SortOption = 'recent' | 'name' | 'rating' | string;
+import RatingsChart from '@/components/RatingsChart';
+import FilterPanel, { type BaseSort, type CustomSort } from '@/components/FilterPanel';
+import GlobalFavoriteEpisodes from '@/components/GlobalFavoriteEpisodes';
 
 type LoadState =
   | { kind: 'idle' }
@@ -105,7 +106,9 @@ function AdminView({ pat, initialSha, onSignOut }: AdminViewProps) {
   const { library } = useLibrary();
   const [sha, setSha] = useState(initialSha);
   const [expandedId, setExpandedId] = useState<string | null>(null);
-  const [sortBy, setSortBy] = useState<SortOption>('recent');
+  const [baseSort, setBaseSort] = useState<BaseSort>('recent');
+  const [customSorts, setCustomSorts] = useState<CustomSort[]>([]);
+  const [query, setQuery] = useState('');
 
   const podcasts = library.podcasts;
 
@@ -115,32 +118,59 @@ function AdminView({ pat, initialSha, onSignOut }: AdminViewProps) {
     return [...set].sort();
   }, [podcasts]);
 
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (q.length < 2) return podcasts;
+    return podcasts.filter(
+      (p) =>
+        p.title.toLowerCase().includes(q) ||
+        p.author.toLowerCase().includes(q) ||
+        (p.reviewText && p.reviewText.toLowerCase().includes(q))
+    );
+  }, [podcasts, query]);
+
   const sortedPodcasts = useMemo(() => {
-    const sorted = [...podcasts];
-    switch (sortBy) {
-      case 'name':
-        return sorted.sort((a, b) => a.title.localeCompare(b.title));
-      case 'rating':
-        return sorted.sort((a, b) => (b.overallRating ?? 0) - (a.overallRating ?? 0));
-      case 'recent':
-        return sorted.sort(
-          (a, b) =>
-            new Date(b.updatedAt || 0).getTime() - new Date(a.updatedAt || 0).getTime()
-        );
-      default:
-        if (sortBy.startsWith('custom:')) {
-          const cat = sortBy.replace('custom:', '');
-          return sorted.sort((a, b) => {
-            const ra = a.customRatings.find((cr) => cr.category === cat)?.rating ?? 0;
-            const rb = b.customRatings.find((cr) => cr.category === cat)?.rating ?? 0;
-            return rb - ra;
-          });
-        }
-        return sorted;
-    }
-  }, [podcasts, sortBy]);
+    const sorted = [...filtered];
+    const baseCompare = (a: typeof filtered[0], b: typeof filtered[0]) => {
+      switch (baseSort) {
+        case 'name':
+          return a.title.localeCompare(b.title);
+        case 'rating':
+          return (b.overallRating ?? 0) - (a.overallRating ?? 0);
+        case 'recent':
+        default:
+          return (
+            new Date(b.updatedAt || 0).getTime() -
+            new Date(a.updatedAt || 0).getTime()
+          );
+      }
+    };
+    sorted.sort((a, b) => {
+      for (const s of customSorts) {
+        const ra = a.customRatings.find((cr) => cr.category === s.category)?.rating ?? -1;
+        const rb = b.customRatings.find((cr) => cr.category === s.category)?.rating ?? -1;
+        if (ra !== rb) return s.direction === 'desc' ? rb - ra : ra - rb;
+      }
+      return baseCompare(a, b);
+    });
+    return sorted;
+  }, [filtered, baseSort, customSorts]);
 
   const favoritePodcasts = podcasts.filter((p) => p.isFavorite);
+  const overallRatings = podcasts.map((p) => p.overallRating);
+
+  const customRatingsData = useMemo(() => {
+    const map = new Map<string, number[]>();
+    for (const p of podcasts) {
+      for (const cr of p.customRatings) {
+        if (!map.has(cr.category)) map.set(cr.category, []);
+        map.get(cr.category)!.push(cr.rating);
+      }
+    }
+    return [...map.entries()]
+      .map(([name, ratings]) => ({ name, ratings }))
+      .sort((a, b) => b.ratings.length - a.ratings.length);
+  }, [podcasts]);
 
   return (
     <div className="min-h-screen">
@@ -205,27 +235,63 @@ function AdminView({ pat, initialSha, onSignOut }: AdminViewProps) {
           </section>
         )}
 
+        <GlobalFavoriteEpisodes podcasts={podcasts} />
+
+        {(overallRatings.some((r) => r !== null) || customRatingsData.length > 0) && (
+          <section className="mb-8">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-lg font-semibold text-foreground-bright">
+                Rating Distributions
+              </h2>
+              <Link
+                href="/ratings"
+                className="text-sm text-accent hover:text-accent-hover"
+              >
+                Browse by rating →
+              </Link>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              <Link
+                href="/ratings"
+                className="p-4 bg-background-secondary rounded-lg h-48 hover:bg-background-tertiary transition-colors"
+              >
+                <RatingsChart ratings={overallRatings} title="Overall" height={100} />
+              </Link>
+              {customRatingsData.map(({ name, ratings }) => (
+                <Link
+                  key={name}
+                  href={`/ratings?category=${encodeURIComponent(name)}`}
+                  className="p-4 bg-background-secondary rounded-lg h-48 hover:bg-background-tertiary transition-colors"
+                >
+                  <RatingsChart ratings={ratings} title={name} height={100} />
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
         {podcasts.length > 0 && (
-          <div className="flex items-center gap-3 mb-4">
-            <ArrowUpDown size={16} className="text-foreground" />
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              className="text-sm py-1.5 px-3 bg-background-secondary border border-border rounded"
-            >
-              <option value="recent">Recently Updated</option>
-              <option value="name">Name (A-Z)</option>
-              <option value="rating">Overall Rating</option>
-              {customCategories.length > 0 && (
-                <optgroup label="Custom Ratings">
-                  {customCategories.map((cat) => (
-                    <option key={cat} value={`custom:${cat}`}>
-                      {cat}
-                    </option>
-                  ))}
-                </optgroup>
-              )}
-            </select>
+          <div className="flex flex-wrap items-center gap-3 mb-6">
+            <div className="relative flex-1 min-w-[240px] max-w-md">
+              <Search
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-foreground"
+                size={16}
+              />
+              <input
+                type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search title, author, or review..."
+                className="w-full pl-9 pr-3 py-1.5 text-sm"
+              />
+            </div>
+            <FilterPanel
+              baseSort={baseSort}
+              onBaseSortChange={setBaseSort}
+              customCategories={customCategories}
+              customSorts={customSorts}
+              onCustomSortsChange={setCustomSorts}
+            />
           </div>
         )}
 
@@ -234,14 +300,19 @@ function AdminView({ pat, initialSha, onSignOut }: AdminViewProps) {
             <p className="text-foreground mb-2">No podcasts yet</p>
             <p className="text-sm text-foreground">Search above to add your first podcast</p>
           </div>
+        ) : sortedPodcasts.length === 0 ? (
+          <div className="text-center py-12 bg-background-secondary rounded-lg">
+            <p className="text-foreground text-sm">No matches for &ldquo;{query}&rdquo;</p>
+          </div>
         ) : (
-          <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
             {sortedPodcasts.map((p) => (
               <PodcastEditor
                 key={p.itunesId}
                 podcast={p}
                 expanded={expandedId === p.itunesId}
                 onToggle={() => setExpandedId(expandedId === p.itunesId ? null : p.itunesId)}
+                highlightQuery={query}
               />
             ))}
           </div>
