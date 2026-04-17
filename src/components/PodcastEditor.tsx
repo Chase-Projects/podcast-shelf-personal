@@ -63,19 +63,26 @@ export default function PodcastEditor({ podcast, expanded, onToggle, highlightQu
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <a
-            href={
-              podcast.itunesUrl ??
-              `https://podcasts.apple.com/podcast/id${podcast.itunesId}`
-            }
-            onClick={(e) => e.stopPropagation()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2 text-foreground hover:text-accent transition-colors"
-            title="Open on Apple Podcasts"
-          >
-            <Podcast size={18} />
-          </a>
+          {(() => {
+            const isManual = podcast.itunesId.startsWith('manual-');
+            const href = isManual
+              ? podcast.itunesUrl
+              : podcast.itunesUrl ??
+                `https://podcasts.apple.com/podcast/id${podcast.itunesId}`;
+            if (!href) return null;
+            return (
+              <a
+                href={href}
+                onClick={(e) => e.stopPropagation()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 text-foreground hover:text-accent transition-colors"
+                title={isManual ? 'Open podcast link' : 'Open on Apple Podcasts'}
+              >
+                <Podcast size={18} />
+              </a>
+            );
+          })()}
           {expanded ? (
             <ChevronUp size={20} className="text-foreground" />
           ) : (

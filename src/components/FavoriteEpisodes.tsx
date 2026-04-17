@@ -36,13 +36,14 @@ export default function FavoriteEpisodes({
     removeFavoriteEpisode,
     updateFavoriteEpisode,
   } = useLibrary();
+  const isManualPodcast = itunesId.startsWith('manual-');
   const [isAdding, setIsAdding] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [allEpisodes, setAllEpisodes] = useState<ITunesEpisode[]>([]);
   const [limit, setLimit] = useState(PAGE_SIZE);
   const [loading, setLoading] = useState(false);
   const [loadedLimit, setLoadedLimit] = useState(0);
-  const [manualMode, setManualMode] = useState(false);
+  const [manualMode, setManualMode] = useState(isManualPodcast);
   const [title, setTitle] = useState('');
   const [episodeNumber, setEpisodeNumber] = useState('');
   const [notes, setNotes] = useState('');
@@ -69,18 +70,18 @@ export default function FavoriteEpisodes({
   );
 
   useEffect(() => {
-    if (!isAdding || manualMode) return;
+    if (!isAdding || manualMode || isManualPodcast) return;
     if (loadedLimit === 0) void loadEpisodes(PAGE_SIZE);
-  }, [isAdding, manualMode, loadedLimit, loadEpisodes]);
+  }, [isAdding, manualMode, isManualPodcast, loadedLimit, loadEpisodes]);
 
   // When the user starts searching, pull the full iTunes lookup (up to 200)
   // so results don't require scrolling to reveal older episodes first.
   useEffect(() => {
-    if (!isAdding || manualMode) return;
+    if (!isAdding || manualMode || isManualPodcast) return;
     if (searchQuery.trim().length < 2) return;
     if (loadedLimit >= 200) return;
     void loadEpisodes(200);
-  }, [isAdding, manualMode, searchQuery, loadedLimit, loadEpisodes]);
+  }, [isAdding, manualMode, isManualPodcast, searchQuery, loadedLimit, loadEpisodes]);
 
   const filtered = searchQuery.trim().length >= 2
     ? allEpisodes.filter((e) => {
@@ -402,12 +403,14 @@ export default function FavoriteEpisodes({
                 >
                   Add Episode
                 </button>
-                <button
-                  onClick={() => setManualMode(false)}
-                  className="px-3 py-1.5 text-foreground hover:text-foreground-bright text-sm"
-                >
-                  Back to Search
-                </button>
+                {!isManualPodcast && (
+                  <button
+                    onClick={() => setManualMode(false)}
+                    className="px-3 py-1.5 text-foreground hover:text-foreground-bright text-sm"
+                  >
+                    Back to Search
+                  </button>
+                )}
               </div>
               <p className="text-[11px] text-foreground italic">
                 Paste a Patreon / private feed URL to link the episode. Leave
@@ -418,7 +421,7 @@ export default function FavoriteEpisodes({
           <button
             onClick={() => {
               setIsAdding(false);
-              setManualMode(false);
+              setManualMode(isManualPodcast);
               setSearchQuery('');
               setTitle('');
               setEpisodeNumber('');
