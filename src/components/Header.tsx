@@ -5,14 +5,13 @@ import Link from 'next/link';
 import { Sun, Moon, Lock } from 'lucide-react';
 
 export default function Header() {
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+  const [theme, setTheme] = useState<'dark' | 'light'>('light');
 
   useEffect(() => {
     const saved = localStorage.getItem('theme') as 'dark' | 'light' | null;
-    if (saved) {
-      setTheme(saved);
-      document.documentElement.setAttribute('data-theme', saved);
-    }
+    const next = saved ?? 'light';
+    setTheme(next);
+    document.documentElement.setAttribute('data-theme', next);
   }, []);
 
   const toggleTheme = () => {

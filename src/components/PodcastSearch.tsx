@@ -54,7 +54,9 @@ export default function PodcastSearch() {
       author: podcast.artistName,
       artworkUrl: podcast.artworkUrl600,
       feedUrl: podcast.feedUrl ?? null,
-      itunesUrl: podcast.collectionViewUrl ?? null,
+      itunesUrl:
+        podcast.collectionViewUrl ??
+        `https://podcasts.apple.com/podcast/id${podcast.collectionId}`,
       artistUrl: podcast.artistViewUrl ?? null,
     });
     setQuery('');

@@ -13,9 +13,22 @@ interface Props {
   podcast: LibraryPodcast;
   expanded: boolean;
   onToggle: () => void;
+  highlightQuery?: string;
 }
 
-export default function PodcastEditor({ podcast, expanded, onToggle }: Props) {
+function highlight(text: string, query: string | undefined) {
+  if (!query || query.trim().length < 2) return text;
+  const q = query.trim();
+  const escaped = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const re = new RegExp(`(${escaped})`, 'gi');
+  const parts = text.split(re);
+  const lower = q.toLowerCase();
+  return parts.map((part, i) =>
+    part.toLowerCase() === lower ? <mark key={i}>{part}</mark> : <span key={i}>{part}</span>
+  );
+}
+
+export default function PodcastEditor({ podcast, expanded, onToggle, highlightQuery }: Props) {
   const { readOnly, setOverallRating, setReviewText, toggleFavorite, removePodcast } = useLibrary();
   const [reviewDraft, setReviewDraft] = useState(podcast.reviewText || '');
 
@@ -50,18 +63,19 @@ export default function PodcastEditor({ podcast, expanded, onToggle }: Props) {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          {podcast.itunesUrl && (
-            <a
-              href={podcast.itunesUrl}
-              onClick={(e) => e.stopPropagation()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 text-foreground hover:text-accent transition-colors"
-              title="Open on Apple Podcasts"
-            >
-              <ExternalLink size={18} />
-            </a>
-          )}
+          <a
+            href={
+              podcast.itunesUrl ??
+              `https://podcasts.apple.com/podcast/id${podcast.itunesId}`
+            }
+            onClick={(e) => e.stopPropagation()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 text-foreground hover:text-accent transition-colors"
+            title="Open on Apple Podcasts"
+          >
+            <ExternalLink size={18} />
+          </a>
           {expanded ? (
             <ChevronUp size={20} className="text-foreground" />
           ) : (
@@ -72,7 +86,7 @@ export default function PodcastEditor({ podcast, expanded, onToggle }: Props) {
 
       {expanded && (
         <div className="px-4 pb-4 border-t border-border">
-          <div className="grid md:grid-cols-2 gap-6 pt-4">
+          <div className="grid gap-6 pt-4">
             <div className="space-y-4">
               <div>
                 <label className="block text-sm text-foreground mb-2">Overall Rating</label>
@@ -93,7 +107,9 @@ export default function PodcastEditor({ podcast, expanded, onToggle }: Props) {
                 <div>
                   <label className="block text-sm text-foreground mb-2">Review</label>
                   {readOnly ? (
-                    <p className="text-sm text-foreground-bright whitespace-pre-wrap">{reviewDraft}</p>
+                    <p className="text-sm text-foreground-bright whitespace-pre-wrap">
+                      {highlight(reviewDraft, highlightQuery)}
+                    </p>
                   ) : (
                     <textarea
                       value={reviewDraft}
@@ -113,6 +129,7 @@ export default function PodcastEditor({ podcast, expanded, onToggle }: Props) {
               <FavoriteEpisodes
                 itunesId={podcast.itunesId}
                 podcastName={podcast.title}
+                podcastArtwork={podcast.artworkUrl}
                 episodes={podcast.favoriteEpisodes}
               />
             </div>

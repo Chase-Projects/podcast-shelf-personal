@@ -1,7 +1,17 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { Plus, X, Loader2, Heart, ExternalLink, Search } from 'lucide-react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
+import {
+  Plus,
+  X,
+  Loader2,
+  Heart,
+  ExternalLink,
+  Search,
+  Star,
+  Pencil,
+} from 'lucide-react';
 import type { FavoriteEpisode, ITunesEpisode } from '@/types';
 import { useLibrary } from '@/lib/library';
 import { lookupEpisodes } from '@/lib/itunes';
@@ -9,51 +19,83 @@ import { lookupEpisodes } from '@/lib/itunes';
 interface Props {
   itunesId: string;
   podcastName: string;
+  podcastArtwork: string;
   episodes: FavoriteEpisode[];
 }
 
-export default function FavoriteEpisodes({ itunesId, podcastName, episodes }: Props) {
-  const { readOnly, addFavoriteEpisode, removeFavoriteEpisode } = useLibrary();
+const PAGE_SIZE = 25;
+
+export default function FavoriteEpisodes({
+  itunesId,
+  podcastName,
+  podcastArtwork,
+  episodes,
+}: Props) {
+  const {
+    readOnly,
+    addFavoriteEpisode,
+    removeFavoriteEpisode,
+    updateFavoriteEpisode,
+  } = useLibrary();
   const [isAdding, setIsAdding] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState<ITunesEpisode[]>([]);
-  const [searchLoading, setSearchLoading] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [allEpisodes, setAllEpisodes] = useState<ITunesEpisode[]>([]);
+  const [limit, setLimit] = useState(PAGE_SIZE);
+  const [loading, setLoading] = useState(false);
+  const [loadedLimit, setLoadedLimit] = useState(0);
   const [manualMode, setManualMode] = useState(false);
   const [title, setTitle] = useState('');
   const [episodeNumber, setEpisodeNumber] = useState('');
   const [notes, setNotes] = useState('');
-  const searchRef = useRef<HTMLDivElement>(null);
+  const [editingReview, setEditingReview] = useState<string | null>(null);
+  const [reviewDraft, setReviewDraft] = useState('');
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
-        setIsSearchOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
-  useEffect(() => {
-    if (searchQuery.length < 2) {
-      setSearchResults([]);
-      return;
-    }
-    const timer = setTimeout(async () => {
-      setSearchLoading(true);
+  const loadEpisodes = useCallback(
+    async (target: number) => {
+      if (target <= loadedLimit) return;
+      setLoading(true);
       try {
-        const results = await lookupEpisodes(itunesId, searchQuery);
-        setSearchResults(results);
-        setIsSearchOpen(true);
+        const eps = await lookupEpisodes(itunesId, target);
+        setAllEpisodes(eps);
+        setLoadedLimit(target);
       } catch (e) {
         console.error(e);
       } finally {
-        setSearchLoading(false);
+        setLoading(false);
       }
-    }, 300);
-    return () => clearTimeout(timer);
-  }, [searchQuery, itunesId]);
+    },
+    [itunesId, loadedLimit]
+  );
+
+  useEffect(() => {
+    if (!isAdding || manualMode) return;
+    if (loadedLimit === 0) void loadEpisodes(PAGE_SIZE);
+  }, [isAdding, manualMode, loadedLimit, loadEpisodes]);
+
+  const filtered = searchQuery.trim().length >= 2
+    ? allEpisodes.filter((e) => {
+        const q = searchQuery.toLowerCase();
+        return (
+          e.title.toLowerCase().includes(q) ||
+          (e.description && e.description.toLowerCase().includes(q))
+        );
+      })
+    : allEpisodes;
+
+  const visible = filtered.slice(0, limit);
+  const hasMore = filtered.length > limit || loadedLimit < 200;
+
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const el = e.currentTarget;
+    if (el.scrollHeight - el.scrollTop - el.clientHeight < 60 && !loading) {
+      const next = limit + PAGE_SIZE;
+      setLimit(next);
+      if (next > loadedLimit && loadedLimit < 200) {
+        void loadEpisodes(Math.min(loadedLimit + PAGE_SIZE * 2, 200));
+      }
+    }
+  };
 
   const handleAddFromSearch = (episode: ITunesEpisode) => {
     addFavoriteEpisode(itunesId, {
@@ -61,9 +103,9 @@ export default function FavoriteEpisodes({ itunesId, podcastName, episodes }: Pr
       number: null,
       notes: null,
       addedAt: new Date().toISOString(),
+      artworkUrl: episode.artworkUrl ?? null,
     });
     setSearchQuery('');
-    setIsSearchOpen(false);
     setIsAdding(false);
   };
 
@@ -91,82 +133,209 @@ export default function FavoriteEpisodes({ itunesId, podcastName, episodes }: Pr
 
   return (
     <div className="space-y-3">
-      {episodes.map((episode) => (
-        <div
-          key={episode.title}
-          className="flex items-start gap-3 p-3 bg-background-tertiary rounded-lg"
-        >
-          <Heart size={16} className="text-accent mt-0.5 flex-shrink-0" fill="currentColor" />
-          <div className="flex-1 min-w-0">
-            <p className="text-sm text-foreground-bright font-medium">
-              {episode.number && <span className="text-foreground mr-1">#{episode.number}</span>}
-              {episode.title}
-            </p>
-            {episode.notes && <p className="text-xs text-foreground mt-1">{episode.notes}</p>}
-            <a
-              href={getITunesSearchUrl(episode.title)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-xs text-accent hover:text-accent-hover mt-1"
-            >
-              <ExternalLink size={10} />
-              Find on Apple Podcasts
-            </a>
+      {episodes.map((episode) => {
+        const artwork = episode.artworkUrl ?? podcastArtwork;
+        const isEditing = editingReview === episode.title;
+        return (
+          <div
+            key={episode.title}
+            className="flex items-start gap-3 p-3 bg-background-tertiary rounded-lg"
+          >
+            <Image
+              src={artwork}
+              alt={episode.title}
+              width={48}
+              height={48}
+              className="rounded flex-shrink-0"
+              unoptimized
+            />
+            <div className="flex-1 min-w-0">
+              <div className="flex items-start gap-2">
+                <Heart
+                  size={14}
+                  className="text-accent mt-1 flex-shrink-0"
+                  fill="currentColor"
+                />
+                <p className="text-sm text-foreground-bright font-medium">
+                  {episode.number && (
+                    <span className="text-foreground mr-1">#{episode.number}</span>
+                  )}
+                  {episode.title}
+                </p>
+              </div>
+              {episode.notes && <p className="text-xs text-foreground mt-1">{episode.notes}</p>}
+              {episode.reviewText && !isEditing && (
+                <p className="text-xs text-foreground-bright mt-1 whitespace-pre-wrap">
+                  {episode.reviewText}
+                </p>
+              )}
+              {!readOnly && isEditing && (
+                <div className="mt-2 space-y-1">
+                  <textarea
+                    value={reviewDraft}
+                    onChange={(e) => setReviewDraft(e.target.value)}
+                    placeholder="Episode review..."
+                    className="w-full text-xs resize-none"
+                    rows={2}
+                    autoFocus
+                  />
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => {
+                        updateFavoriteEpisode(itunesId, episode.title, {
+                          reviewText: reviewDraft.trim() || null,
+                        });
+                        setEditingReview(null);
+                      }}
+                      className="text-xs text-accent hover:text-accent-hover"
+                    >
+                      Save
+                    </button>
+                    <button
+                      onClick={() => setEditingReview(null)}
+                      className="text-xs text-foreground hover:text-foreground-bright"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              )}
+              <div className="flex items-center gap-3 mt-1">
+                <a
+                  href={getITunesSearchUrl(episode.title)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-xs text-accent hover:text-accent-hover"
+                >
+                  <ExternalLink size={10} />
+                  Find on Apple Podcasts
+                </a>
+                {!readOnly && !isEditing && (
+                  <button
+                    onClick={() => {
+                      setEditingReview(episode.title);
+                      setReviewDraft(episode.reviewText ?? '');
+                    }}
+                    className="inline-flex items-center gap-1 text-xs text-foreground hover:text-foreground-bright"
+                  >
+                    <Pencil size={10} />
+                    {episode.reviewText ? 'Edit review' : 'Add review'}
+                  </button>
+                )}
+              </div>
+            </div>
+            <div className="flex flex-col items-center gap-1 flex-shrink-0">
+              <button
+                onClick={() =>
+                  !readOnly &&
+                  updateFavoriteEpisode(itunesId, episode.title, {
+                    isGlobalFavorite: !episode.isGlobalFavorite,
+                  })
+                }
+                disabled={readOnly}
+                className={`p-1 transition-colors ${
+                  episode.isGlobalFavorite
+                    ? 'text-accent'
+                    : 'text-foreground hover:text-accent'
+                } disabled:hover:text-foreground disabled:cursor-default`}
+                title={
+                  episode.isGlobalFavorite
+                    ? 'Global favorite'
+                    : 'Mark as global favorite'
+                }
+              >
+                <Star size={14} fill={episode.isGlobalFavorite ? 'currentColor' : 'none'} />
+              </button>
+              {!readOnly && (
+                <button
+                  onClick={() => removeFavoriteEpisode(itunesId, episode.title)}
+                  className="p-1 text-foreground hover:text-red-400 transition-colors"
+                >
+                  <X size={14} />
+                </button>
+              )}
+            </div>
           </div>
-          {!readOnly && (
-            <button
-              onClick={() => removeFavoriteEpisode(itunesId, episode.title)}
-              className="p-1 text-foreground hover:text-red-400 transition-colors"
-            >
-              <X size={14} />
-            </button>
-          )}
-        </div>
-      ))}
+        );
+      })}
 
       {!readOnly && (isAdding ? (
         <div className="space-y-3 p-3 bg-background-tertiary rounded-lg">
           {!manualMode ? (
             <>
-              <div ref={searchRef} className="relative">
-                <div className="relative">
-                  <Search
-                    className="absolute left-3 top-1/2 -translate-y-1/2 text-foreground"
+              <div className="relative">
+                <Search
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-foreground"
+                  size={14}
+                />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                    setLimit(PAGE_SIZE);
+                  }}
+                  placeholder="Filter recent episodes..."
+                  className="w-full pl-9 pr-4 py-2 text-sm"
+                  autoFocus
+                />
+                {loading && (
+                  <Loader2
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-foreground animate-spin"
                     size={14}
                   />
-                  <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    onFocus={() => searchResults.length > 0 && setIsSearchOpen(true)}
-                    placeholder="Search episodes..."
-                    className="w-full pl-9 pr-4 py-2 text-sm"
-                    autoFocus
-                  />
-                  {searchLoading && (
-                    <Loader2
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-foreground animate-spin"
-                      size={14}
-                    />
-                  )}
-                </div>
-                {isSearchOpen && searchResults.length > 0 && (
-                  <div className="absolute top-full left-0 right-0 mt-1 bg-background-secondary border border-border rounded-lg shadow-xl max-h-48 overflow-y-auto z-50">
-                    {searchResults.map((episode) => (
-                      <button
-                        key={episode.id}
-                        onClick={() => handleAddFromSearch(episode)}
-                        className="w-full text-left px-3 py-2 hover:bg-background-tertiary transition-colors border-b border-border last:border-b-0"
-                      >
-                        <p className="text-sm text-foreground-bright truncate">{episode.title}</p>
+                )}
+              </div>
+              <div
+                ref={scrollRef}
+                onScroll={handleScroll}
+                className="max-h-72 overflow-y-auto bg-background-secondary border border-border rounded-lg"
+              >
+                {visible.length === 0 && !loading && (
+                  <p className="p-3 text-xs text-foreground">
+                    {searchQuery
+                      ? 'No matching episodes.'
+                      : 'No episodes found.'}
+                  </p>
+                )}
+                {visible.map((episode) => {
+                  const art = episode.artworkUrl ?? podcastArtwork;
+                  return (
+                    <button
+                      key={episode.id}
+                      onClick={() => handleAddFromSearch(episode)}
+                      className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-background-tertiary transition-colors border-b border-border last:border-b-0"
+                    >
+                      <Image
+                        src={art}
+                        alt={episode.title}
+                        width={40}
+                        height={40}
+                        className="rounded flex-shrink-0"
+                        unoptimized
+                      />
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm text-foreground-bright truncate">
+                          {episode.title}
+                        </p>
                         {episode.releaseDate && (
                           <p className="text-xs text-foreground">
                             {new Date(episode.releaseDate).toLocaleDateString()}
                           </p>
                         )}
-                      </button>
-                    ))}
+                      </div>
+                    </button>
+                  );
+                })}
+                {loading && (
+                  <div className="flex items-center justify-center py-2">
+                    <Loader2 className="animate-spin text-foreground" size={14} />
                   </div>
+                )}
+                {!loading && !hasMore && visible.length > 0 && (
+                  <p className="p-2 text-[11px] text-foreground text-center">
+                    End of episodes
+                  </p>
                 )}
               </div>
               <div className="flex items-center gap-2 text-xs">
@@ -228,6 +397,7 @@ export default function FavoriteEpisodes({ itunesId, podcastName, episodes }: Pr
               setTitle('');
               setEpisodeNumber('');
               setNotes('');
+              setLimit(PAGE_SIZE);
             }}
             className="w-full py-1.5 text-foreground hover:text-foreground-bright text-sm"
           >

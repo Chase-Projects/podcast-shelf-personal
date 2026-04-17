@@ -8,6 +8,9 @@ export interface FavoriteEpisode {
   number: string | null;
   notes: string | null;
   addedAt: string | null;
+  isGlobalFavorite?: boolean;
+  artworkUrl?: string | null;
+  reviewText?: string | null;
 }
 
 export interface LibraryPodcast {
@@ -50,4 +53,5 @@ export interface ITunesEpisode {
   releaseDate?: string;
   description?: string;
   episodeUrl?: string;
+  artworkUrl?: string;
 }

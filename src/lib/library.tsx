@@ -31,6 +31,11 @@ interface LibraryContextValue {
   removeCustomRating: (itunesId: string, category: string) => void;
   addFavoriteEpisode: (itunesId: string, ep: FavoriteEpisode) => void;
   removeFavoriteEpisode: (itunesId: string, title: string) => void;
+  updateFavoriteEpisode: (
+    itunesId: string,
+    title: string,
+    patch: Partial<FavoriteEpisode>
+  ) => void;
   exportJson: () => string;
   importJson: (text: string) => { ok: true } | { ok: false; error: string };
 }
@@ -174,6 +179,17 @@ export function LibraryProvider({
     [mutatePodcast]
   );
 
+  const updateFavoriteEpisode = useCallback(
+    (itunesId: string, title: string, patch: Partial<FavoriteEpisode>) =>
+      mutatePodcast(itunesId, (p) => ({
+        ...p,
+        favoriteEpisodes: p.favoriteEpisodes.map((e) =>
+          e.title === title ? { ...e, ...patch } : e
+        ),
+      })),
+    [mutatePodcast]
+  );
+
   const exportJson = useCallback(() => JSON.stringify(library, null, 2) + '\n', [library]);
 
   const importJson = useCallback((text: string) => {
@@ -207,6 +223,7 @@ export function LibraryProvider({
       removeCustomRating,
       addFavoriteEpisode,
       removeFavoriteEpisode,
+      updateFavoriteEpisode,
       exportJson,
       importJson,
     }),
@@ -226,6 +243,7 @@ export function LibraryProvider({
       removeCustomRating,
       addFavoriteEpisode,
       removeFavoriteEpisode,
+      updateFavoriteEpisode,
       exportJson,
       importJson,
     ]

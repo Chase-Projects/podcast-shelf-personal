@@ -1,31 +1,33 @@
 @import "tailwindcss";
 
 :root {
+  --background: #f7f3ec;
+  --background-secondary: #fdfaf3;
+  --background-tertiary: #ece5d6;
+  --foreground: #7a6a58;
+  --foreground-bright: #2b1f12;
+  --accent: #e47e2e;
+  --accent-hover: #c86615;
+  --accent-orange: #e47e2e;
+  --border: #e2d8c3;
+  --star: #e47e2e;
+  --star-empty: #d9cdb5;
+  --mark-bg: #ffd9a8;
+}
+
+[data-theme="dark"] {
   --background: #14181c;
   --background-secondary: #1c2228;
   --background-tertiary: #242c34;
   --foreground: #99aabb;
   --foreground-bright: #ffffff;
-  --accent: #00e054;
-  --accent-hover: #00c44a;
-  --accent-orange: #ff8000;
+  --accent: #ff8a3d;
+  --accent-hover: #ffa466;
+  --accent-orange: #ff8a3d;
   --border: #2c3440;
-  --star: #00e054;
+  --star: #ff8a3d;
   --star-empty: #456;
-}
-
-[data-theme="light"] {
-  --background: #f4f5f6;
-  --background-secondary: #ffffff;
-  --background-tertiary: #e8eaed;
-  --foreground: #456;
-  --foreground-bright: #14181c;
-  --accent: #007a2f;
-  --accent-hover: #005f24;
-  --accent-orange: #cc5c00;
-  --border: #d0d4d9;
-  --star: #007a2f;
-  --star-empty: #ccd;
+  --mark-bg: #5a3a18;
 }
 
 @theme inline {
@@ -78,4 +80,11 @@ input:focus, textarea:focus, select:focus {
 
 button {
   cursor: pointer;
+}
+
+mark {
+  background: var(--mark-bg);
+  color: var(--foreground-bright);
+  padding: 0 2px;
+  border-radius: 2px;
 }
