@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { ChevronDown, ChevronUp, Trash2, ExternalLink, Star } from 'lucide-react';
+import { ChevronDown, ChevronUp, Trash2, Podcast, Heart } from 'lucide-react';
 import type { LibraryPodcast } from '@/types';
 import StarRating from './StarRating';
 import CustomRatings from './CustomRatings';
@@ -74,7 +74,7 @@ export default function PodcastEditor({ podcast, expanded, onToggle, highlightQu
             className="p-2 text-foreground hover:text-accent transition-colors"
             title="Open on Apple Podcasts"
           >
-            <ExternalLink size={18} />
+            <Podcast size={18} />
           </a>
           {expanded ? (
             <ChevronUp size={20} className="text-foreground" />
@@ -143,7 +143,7 @@ export default function PodcastEditor({ podcast, expanded, onToggle, highlightQu
                   podcast.isFavorite ? 'text-accent' : 'text-foreground hover:text-accent'
                 }`}
               >
-                <Star size={16} fill={podcast.isFavorite ? 'currentColor' : 'none'} />
+                <Heart size={16} fill={podcast.isFavorite ? 'currentColor' : 'none'} />
                 {podcast.isFavorite ? 'Favorited' : 'Add to Favorites'}
               </button>
               <button
@@ -157,7 +157,7 @@ export default function PodcastEditor({ podcast, expanded, onToggle, highlightQu
           ) : podcast.isFavorite && (
             <div className="mt-4 pt-4 border-t border-border">
               <span className="flex items-center gap-1.5 text-sm text-accent">
-                <Star size={16} fill="currentColor" />
+                <Heart size={16} fill="currentColor" />
                 Favorited
               </span>
             </div>

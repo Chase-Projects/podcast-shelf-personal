@@ -50,7 +50,7 @@ export default function RatingsChart({ ratings, title, height = 120 }: RatingsCh
                 </div>
               </div>
               <div
-                className="w-full bg-background-tertiary rounded-t overflow-hidden flex flex-col justify-end"
+                className="w-full bg-border rounded-t overflow-hidden flex flex-col justify-end transition-colors group-hover:bg-foreground/30"
                 style={{ height: `${height}px` }}
               >
                 <div

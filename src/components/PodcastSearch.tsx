@@ -67,7 +67,7 @@ export default function PodcastSearch() {
     <div ref={searchRef} className="relative w-full max-w-md">
       <div className="relative">
         <Search
-          className="absolute left-3 top-1/2 -translate-y-1/2 text-foreground"
+          className="absolute left-3 top-1/2 -translate-y-1/2 text-foreground pointer-events-none"
           size={18}
         />
         <input
@@ -76,7 +76,7 @@ export default function PodcastSearch() {
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => results.length > 0 && setIsOpen(true)}
           placeholder="Search podcasts..."
-          className="w-full pl-10 pr-4 py-2.5"
+          className="w-full pl-11 pr-4 py-2.5"
         />
         {loading && (
           <Loader2

@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { Star, ExternalLink } from 'lucide-react';
+import { Heart, Podcast } from 'lucide-react';
 import type { LibraryPodcast } from '@/types';
 
 interface Props {
@@ -20,21 +20,23 @@ export default function GlobalFavoriteEpisodes({ podcasts }: Props) {
   return (
     <section className="mb-8">
       <div className="flex items-center gap-2 mb-4">
-        <Star size={20} className="text-accent" fill="currentColor" />
+        <Heart size={20} className="text-accent" fill="currentColor" />
         <h2 className="text-lg font-semibold text-foreground-bright">
-          Global Favorite Episodes
+          Favorite Episodes
         </h2>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {items.map(({ podcast, episode }) => {
           const artwork = episode.artworkUrl ?? podcast.artworkUrl;
-          const searchUrl = `https://podcasts.apple.com/search?term=${encodeURIComponent(
-            `${podcast.title} ${episode.title}`
-          )}`;
+          const href =
+            episode.episodeUrl ||
+            `https://podcasts.apple.com/search?term=${encodeURIComponent(
+              `${podcast.title} ${episode.title}`
+            )}`;
           return (
             <a
               key={`${podcast.itunesId}-${episode.title}`}
-              href={searchUrl}
+              href={href}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-start gap-3 p-3 bg-background-secondary rounded-lg hover:bg-background-tertiary transition-colors group"
@@ -59,11 +61,11 @@ export default function GlobalFavoriteEpisodes({ podcasts }: Props) {
                     {episode.reviewText}
                   </p>
                 )}
-                <span className="inline-flex items-center gap-1 text-xs text-accent mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <ExternalLink size={10} />
-                  Apple Podcasts
-                </span>
               </div>
+              <Podcast
+                size={14}
+                className="text-foreground group-hover:text-accent transition-colors flex-shrink-0 mt-1"
+              />
             </a>
           );
         })}
