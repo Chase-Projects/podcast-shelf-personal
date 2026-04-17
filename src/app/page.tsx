@@ -1,13 +1,14 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Loader2, Star, Search } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
+import { Loader2, Heart, Search } from 'lucide-react';
 import Header from '@/components/Header';
 import PodcastEditor from '@/components/PodcastEditor';
 import RatingsChart from '@/components/RatingsChart';
-import FilterPanel, { type BaseSort, type CustomSort } from '@/components/FilterPanel';
+import SortControls, { type Ordering, type RatingType } from '@/components/SortControls';
 import GlobalFavoriteEpisodes from '@/components/GlobalFavoriteEpisodes';
 import { LibraryProvider, useLibrary } from '@/lib/library';
 import { LIBRARY_RAW_URL } from '@/lib/github';
@@ -45,17 +46,31 @@ export default function Home() {
 
   return (
     <LibraryProvider initialLibrary={library} readOnly>
-      <HomeView />
+      <Suspense fallback={null}>
+        <HomeView />
+      </Suspense>
     </LibraryProvider>
   );
 }
 
 function HomeView() {
   const { library } = useLibrary();
-  const [expandedId, setExpandedId] = useState<string | null>(null);
-  const [baseSort, setBaseSort] = useState<BaseSort>('recent');
-  const [customSorts, setCustomSorts] = useState<CustomSort[]>([]);
+  const searchParams = useSearchParams();
+  const focusId = searchParams.get('focus');
+  const [expandedId, setExpandedId] = useState<string | null>(focusId);
+  const [ordering, setOrdering] = useState<Ordering>('dateAltered');
+  const [ratingType, setRatingType] = useState<RatingType>('overall');
   const [query, setQuery] = useState('');
+  const focusRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!focusId) return;
+    setExpandedId(focusId);
+    const t = window.setTimeout(() => {
+      focusRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
+    return () => window.clearTimeout(t);
+  }, [focusId]);
 
   const podcasts = library.podcasts;
 
@@ -77,31 +92,41 @@ function HomeView() {
   }, [podcasts, query]);
 
   const sortedPodcasts = useMemo(() => {
+    const getRating = (p: typeof filtered[0]) =>
+      ratingType === 'overall'
+        ? p.overallRating
+        : p.customRatings.find((cr) => cr.category === ratingType)?.rating ?? null;
     const sorted = [...filtered];
-    const baseCompare = (a: typeof filtered[0], b: typeof filtered[0]) => {
-      switch (baseSort) {
-        case 'name':
+    sorted.sort((a, b) => {
+      switch (ordering) {
+        case 'alphabetical':
           return a.title.localeCompare(b.title);
-        case 'rating':
-          return (b.overallRating ?? 0) - (a.overallRating ?? 0);
-        case 'recent':
+        case 'dateAdded':
+          return (
+            new Date(b.addedAt || 0).getTime() - new Date(a.addedAt || 0).getTime()
+          );
+        case 'bestToWorst': {
+          const ra = getRating(a) ?? -1;
+          const rb = getRating(b) ?? -1;
+          if (ra !== rb) return rb - ra;
+          return a.title.localeCompare(b.title);
+        }
+        case 'worstToBest': {
+          const ra = getRating(a) ?? Infinity;
+          const rb = getRating(b) ?? Infinity;
+          if (ra !== rb) return ra - rb;
+          return a.title.localeCompare(b.title);
+        }
+        case 'dateAltered':
         default:
           return (
             new Date(b.updatedAt || 0).getTime() -
             new Date(a.updatedAt || 0).getTime()
           );
       }
-    };
-    sorted.sort((a, b) => {
-      for (const s of customSorts) {
-        const ra = a.customRatings.find((cr) => cr.category === s.category)?.rating ?? -1;
-        const rb = b.customRatings.find((cr) => cr.category === s.category)?.rating ?? -1;
-        if (ra !== rb) return s.direction === 'desc' ? rb - ra : ra - rb;
-      }
-      return baseCompare(a, b);
     });
     return sorted;
-  }, [filtered, baseSort, customSorts]);
+  }, [filtered, ordering, ratingType]);
 
   const favoritePodcasts = podcasts.filter((p) => p.isFavorite);
   const overallRatings = podcasts.map((p) => p.overallRating);
@@ -126,15 +151,21 @@ function HomeView() {
         {favoritePodcasts.length > 0 && (
           <section className="mb-8">
             <div className="flex items-center gap-2 mb-4">
-              <Star size={20} className="text-accent" fill="currentColor" />
+              <Heart size={20} className="text-accent" fill="currentColor" />
               <h2 className="text-lg font-semibold text-foreground-bright">
                 Favorite Podcasts
               </h2>
             </div>
             <div className="flex gap-4 overflow-x-auto pb-2">
               {favoritePodcasts.map((p) => (
-                <div key={p.itunesId} className="flex-shrink-0">
-                  <div className="relative w-24 h-24 rounded-lg overflow-hidden">
+                <Link
+                  key={p.itunesId}
+                  href={`/?focus=${p.itunesId}#podcast-${p.itunesId}`}
+                  scroll={false}
+                  className="flex-shrink-0"
+                  title={p.title}
+                >
+                  <div className="relative w-24 h-24 rounded-lg overflow-hidden hover:opacity-80 transition-opacity">
                     <Image
                       src={p.artworkUrl}
                       alt={p.title}
@@ -143,10 +174,7 @@ function HomeView() {
                       unoptimized
                     />
                   </div>
-                  <p className="text-xs text-foreground-bright mt-1 w-24 truncate text-center">
-                    {p.title}
-                  </p>
-                </div>
+                </Link>
               ))}
             </div>
           </section>
@@ -156,15 +184,15 @@ function HomeView() {
 
         {(overallRatings.some((r) => r !== null) || customRatingsData.length > 0) && (
           <section className="mb-8">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-3 mb-4">
               <h2 className="text-lg font-semibold text-foreground-bright">
                 Rating Distributions
               </h2>
               <Link
                 href="/ratings"
-                className="text-sm text-accent hover:text-accent-hover"
+                className="text-xs px-2.5 py-1 rounded border border-border bg-background-secondary text-foreground hover:text-accent hover:border-accent transition-colors"
               >
-                Browse by rating →
+                Browse by rating
               </Link>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -191,7 +219,7 @@ function HomeView() {
           <div className="flex flex-wrap items-center gap-3 mb-6">
             <div className="relative flex-1 min-w-[240px] max-w-md">
               <Search
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-foreground"
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-foreground pointer-events-none"
                 size={16}
               />
               <input
@@ -199,15 +227,15 @@ function HomeView() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search title, author, or review..."
-                className="w-full pl-9 pr-3 py-1.5 text-sm"
+                className="w-full pl-10 pr-3 py-1.5 text-sm"
               />
             </div>
-            <FilterPanel
-              baseSort={baseSort}
-              onBaseSortChange={setBaseSort}
+            <SortControls
+              ordering={ordering}
+              onOrderingChange={setOrdering}
+              ratingType={ratingType}
+              onRatingTypeChange={setRatingType}
               customCategories={customCategories}
-              customSorts={customSorts}
-              onCustomSortsChange={setCustomSorts}
             />
           </div>
         )}
@@ -223,13 +251,19 @@ function HomeView() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
             {sortedPodcasts.map((p) => (
-              <PodcastEditor
+              <div
                 key={p.itunesId}
-                podcast={p}
-                expanded={expandedId === p.itunesId}
-                onToggle={() => setExpandedId(expandedId === p.itunesId ? null : p.itunesId)}
-                highlightQuery={query}
-              />
+                id={`podcast-${p.itunesId}`}
+                ref={p.itunesId === focusId ? focusRef : undefined}
+                className="scroll-mt-4"
+              >
+                <PodcastEditor
+                  podcast={p}
+                  expanded={expandedId === p.itunesId}
+                  onToggle={() => setExpandedId(expandedId === p.itunesId ? null : p.itunesId)}
+                  highlightQuery={query}
+                />
+              </div>
             ))}
           </div>
         )}

@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState, Suspense } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { Loader2, ArrowLeft } from 'lucide-react';
+import { Loader2, ArrowLeft, Star } from 'lucide-react';
 import Header from '@/components/Header';
 import StarRating from '@/components/StarRating';
 import { LIBRARY_RAW_URL } from '@/lib/github';
@@ -98,7 +98,7 @@ function RatingsContent() {
               href="/ratings"
               className={`px-2 py-1 rounded border ${
                 !category
-                  ? 'bg-accent text-background border-accent'
+                  ? 'bg-accent text-background-tertiary border-accent'
                   : 'border-border text-foreground hover:text-accent'
               }`}
             >
@@ -110,7 +110,7 @@ function RatingsContent() {
                 href={`/ratings?category=${encodeURIComponent(cat)}`}
                 className={`px-2 py-1 rounded border ${
                   category === cat
-                    ? 'bg-accent text-background border-accent'
+                    ? 'bg-accent text-background-tertiary border-accent'
                     : 'border-border text-foreground hover:text-accent'
                 }`}
               >
@@ -121,15 +121,37 @@ function RatingsContent() {
         </div>
 
         <div className="flex flex-wrap gap-2 mb-8 sticky top-0 py-3 bg-background z-10 border-b border-border">
-          {tiers.map(({ tier, podcasts }) => (
-            <a
-              key={tier}
-              href={`#tier-${tier}`}
-              className="text-xs px-2 py-1 rounded bg-background-secondary border border-border text-foreground hover:text-accent"
-            >
-              {tier}★ <span className="text-foreground">({podcasts.length})</span>
-            </a>
-          ))}
+          {tiers.map(({ tier, podcasts }) => {
+            const fullStars = Math.floor(tier);
+            const hasHalf = tier % 1 === 0.5;
+            return (
+              <a
+                key={tier}
+                href={`#tier-${tier}`}
+                className="flex items-center gap-1 text-xs px-2 py-1 rounded bg-background-secondary border border-border text-foreground hover:text-accent hover:border-accent transition-colors"
+              >
+                <span className="flex items-center text-star">
+                  {Array.from({ length: fullStars }).map((_, i) => (
+                    <Star key={i} size={12} fill="currentColor" strokeWidth={0} />
+                  ))}
+                  {hasHalf && (
+                    <span className="relative inline-block" style={{ width: 12, height: 12 }}>
+                      <Star
+                        size={12}
+                        className="absolute inset-0 text-star-empty"
+                        fill="currentColor"
+                        strokeWidth={0}
+                      />
+                      <span className="absolute inset-0 overflow-hidden" style={{ width: 6 }}>
+                        <Star size={12} fill="currentColor" strokeWidth={0} />
+                      </span>
+                    </span>
+                  )}
+                </span>
+                <span className="text-foreground">({podcasts.length})</span>
+              </a>
+            );
+          })}
         </div>
 
         {tiers.length === 0 ? (
@@ -149,15 +171,11 @@ function RatingsContent() {
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                   {podcasts.map((p) => (
-                    <a
+                    <Link
                       key={p.itunesId}
-                      href={
-                        p.itunesUrl ??
-                        `https://podcasts.apple.com/podcast/id${p.itunesId}`
-                      }
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href={`/?focus=${p.itunesId}#podcast-${p.itunesId}`}
                       className="group"
+                      title={`Open ${p.title} on shelf`}
                     >
                       <div className="relative aspect-square rounded-lg overflow-hidden">
                         <Image
@@ -172,7 +190,7 @@ function RatingsContent() {
                         {p.title}
                       </p>
                       <p className="text-[11px] text-foreground truncate">{p.author}</p>
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </section>

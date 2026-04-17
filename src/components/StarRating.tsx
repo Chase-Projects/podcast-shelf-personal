@@ -32,7 +32,7 @@ export default function StarRating({
   };
 
   return (
-    <div className="flex gap-0.5" onMouseLeave={() => setHoverRating(null)}>
+    <div className="flex" onMouseLeave={() => setHoverRating(null)}>
       {[0, 1, 2, 3, 4].map((starIndex) => {
         const filled = displayRating >= starIndex + 1;
         const halfFilled = !filled && displayRating >= starIndex + 0.5;

@@ -11,6 +11,7 @@ export interface FavoriteEpisode {
   isGlobalFavorite?: boolean;
   artworkUrl?: string | null;
   reviewText?: string | null;
+  episodeUrl?: string | null;
 }
 
 export interface LibraryPodcast {

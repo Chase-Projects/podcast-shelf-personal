@@ -7,9 +7,8 @@ import {
   X,
   Loader2,
   Heart,
-  ExternalLink,
+  Podcast,
   Search,
-  Star,
   Pencil,
 } from 'lucide-react';
 import type { FavoriteEpisode, ITunesEpisode } from '@/types';
@@ -104,6 +103,7 @@ export default function FavoriteEpisodes({
       notes: null,
       addedAt: new Date().toISOString(),
       artworkUrl: episode.artworkUrl ?? null,
+      episodeUrl: episode.episodeUrl ?? null,
     });
     setSearchQuery('');
     setIsAdding(false);
@@ -124,8 +124,9 @@ export default function FavoriteEpisodes({
     setManualMode(false);
   };
 
-  const getITunesSearchUrl = (episodeTitle: string) =>
-    `https://podcasts.apple.com/search?term=${encodeURIComponent(`${podcastName} ${episodeTitle}`)}`;
+  const getEpisodeUrl = (episode: FavoriteEpisode) =>
+    episode.episodeUrl ||
+    `https://podcasts.apple.com/search?term=${encodeURIComponent(`${podcastName} ${episode.title}`)}`;
 
   if (readOnly && episodes.length === 0) {
     return <p className="text-sm text-foreground italic">No favorite episodes</p>;
@@ -141,28 +142,34 @@ export default function FavoriteEpisodes({
             key={episode.title}
             className="flex items-start gap-3 p-3 bg-background-tertiary rounded-lg"
           >
-            <Image
-              src={artwork}
-              alt={episode.title}
-              width={48}
-              height={48}
-              className="rounded flex-shrink-0"
-              unoptimized
-            />
+            <a
+              href={getEpisodeUrl(episode)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-shrink-0"
+              title="Open episode"
+            >
+              <Image
+                src={artwork}
+                alt={episode.title}
+                width={48}
+                height={48}
+                className="rounded"
+                unoptimized
+              />
+            </a>
             <div className="flex-1 min-w-0">
-              <div className="flex items-start gap-2">
-                <Heart
-                  size={14}
-                  className="text-accent mt-1 flex-shrink-0"
-                  fill="currentColor"
-                />
-                <p className="text-sm text-foreground-bright font-medium">
-                  {episode.number && (
-                    <span className="text-foreground mr-1">#{episode.number}</span>
-                  )}
-                  {episode.title}
-                </p>
-              </div>
+              <a
+                href={getEpisodeUrl(episode)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-sm text-foreground-bright font-medium hover:text-accent transition-colors"
+              >
+                {episode.number && (
+                  <span className="text-foreground mr-1">#{episode.number}</span>
+                )}
+                {episode.title}
+              </a>
               {episode.notes && <p className="text-xs text-foreground mt-1">{episode.notes}</p>}
               {episode.reviewText && !isEditing && (
                 <p className="text-xs text-foreground-bright mt-1 whitespace-pre-wrap">
@@ -200,17 +207,8 @@ export default function FavoriteEpisodes({
                   </div>
                 </div>
               )}
-              <div className="flex items-center gap-3 mt-1">
-                <a
-                  href={getITunesSearchUrl(episode.title)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-xs text-accent hover:text-accent-hover"
-                >
-                  <ExternalLink size={10} />
-                  Find on Apple Podcasts
-                </a>
-                {!readOnly && !isEditing && (
+              {!readOnly && !isEditing && (
+                <div className="flex items-center gap-3 mt-1">
                   <button
                     onClick={() => {
                       setEditingReview(episode.title);
@@ -221,8 +219,8 @@ export default function FavoriteEpisodes({
                     <Pencil size={10} />
                     {episode.reviewText ? 'Edit review' : 'Add review'}
                   </button>
-                )}
-              </div>
+                </div>
+              )}
             </div>
             <div className="flex flex-col items-center gap-1 flex-shrink-0">
               <button
@@ -240,11 +238,11 @@ export default function FavoriteEpisodes({
                 } disabled:hover:text-foreground disabled:cursor-default`}
                 title={
                   episode.isGlobalFavorite
-                    ? 'Global favorite'
-                    : 'Mark as global favorite'
+                    ? 'Featured on home page'
+                    : 'Feature on home page'
                 }
               >
-                <Star size={14} fill={episode.isGlobalFavorite ? 'currentColor' : 'none'} />
+                <Heart size={14} fill={episode.isGlobalFavorite ? 'currentColor' : 'none'} />
               </button>
               {!readOnly && (
                 <button
@@ -263,28 +261,37 @@ export default function FavoriteEpisodes({
         <div className="space-y-3 p-3 bg-background-tertiary rounded-lg">
           {!manualMode ? (
             <>
-              <div className="relative">
-                <Search
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-foreground"
-                  size={14}
-                />
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => {
-                    setSearchQuery(e.target.value);
-                    setLimit(PAGE_SIZE);
-                  }}
-                  placeholder="Filter recent episodes..."
-                  className="w-full pl-9 pr-4 py-2 text-sm"
-                  autoFocus
-                />
-                {loading && (
-                  <Loader2
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-foreground animate-spin"
+              <div className="flex items-center gap-2">
+                <div className="relative flex-1">
+                  <Search
+                    className="absolute left-3 top-1/2 -translate-y-1/2 text-foreground"
                     size={14}
                   />
-                )}
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => {
+                      setSearchQuery(e.target.value);
+                      setLimit(PAGE_SIZE);
+                    }}
+                    placeholder="Filter recent episodes..."
+                    className="w-full pl-10 pr-4 py-2 text-sm"
+                    autoFocus
+                  />
+                  {loading && (
+                    <Loader2
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-foreground animate-spin"
+                      size={14}
+                    />
+                  )}
+                </div>
+                <button
+                  onClick={() => setManualMode(true)}
+                  className="text-xs px-2 py-2 bg-background-secondary border border-border rounded text-foreground hover:text-accent hover:border-accent transition-colors whitespace-nowrap"
+                  title="Add a subscriber-only or unlisted episode"
+                >
+                  Add manually
+                </button>
               </div>
               <div
                 ref={scrollRef}
@@ -338,15 +345,9 @@ export default function FavoriteEpisodes({
                   </p>
                 )}
               </div>
-              <div className="flex items-center gap-2 text-xs">
-                <span className="text-foreground">Can&apos;t find it?</span>
-                <button
-                  onClick={() => setManualMode(true)}
-                  className="text-accent hover:text-accent-hover"
-                >
-                  Add manually
-                </button>
-              </div>
+              <p className="text-[11px] text-foreground italic">
+                Subscriber-only episodes won&apos;t appear here — use &ldquo;Add manually&rdquo;.
+              </p>
             </>
           ) : (
             <>
