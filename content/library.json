@@ -11,10 +11,10 @@
       "itunesUrl": "https://www.listennotes.com/podcasts/art-artists-real-talk-think-tank-gallery-0O69xnhZu1-/",
       "artistUrl": null,
       "overallRating": 2,
-      "reviewText": "This was the first podcast I listened to. It is now nowhere on iTunes and I can only find one reference to it online. But it was first. ",
+      "reviewText": "This was the first podcast I listened to. It is now nowhere on iTunes and I can only find one reference to it online. But it was first. The only episode I remember was about the graffiti art scene in Thailand? Pretty cool for a podcast, not sure why it's gone now.",
       "isFavorite": false,
       "addedAt": "2026-04-17T20:20:58.187Z",
-      "updatedAt": "2026-04-17T20:22:13.705Z",
+      "updatedAt": "2026-04-17T20:25:20.676Z",
       "customRatings": [],
       "favoriteEpisodes": []
     },
@@ -46,9 +46,18 @@
       "reviewText": "The quality of this podcast is entirely the guests. I do really like the Stephen Breyer episodes ",
       "isFavorite": false,
       "addedAt": "2026-04-17T07:35:12.748Z",
-      "updatedAt": "2026-04-17T07:43:51.682Z",
+      "updatedAt": "2026-04-17T20:26:17.775Z",
       "customRatings": [],
-      "favoriteEpisodes": []
+      "favoriteEpisodes": [
+        {
+          "title": "Justice Stephen G. Breyer",
+          "number": null,
+          "notes": null,
+          "addedAt": "2026-04-17T20:26:17.775Z",
+          "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts125/v4/7f/3d/f4/7f3df436-5609-eb7e-0055-d4ba20bc02e6/mza_4601074200507054221.jpg/600x600bb.jpg",
+          "episodeUrl": "https://podcasts.apple.com/us/podcast/justice-stephen-g-breyer/id1436346407?i=1000657591792&uo=4"
+        }
+      ]
     },
     {
       "itunesId": "1198009325",
@@ -404,11 +413,11 @@
       "feedUrl": "https://www.omnycontent.com/d/playlist/e73c998e-6e60-432f-8610-ae210140c5b1/2b18f6f0-09c0-471e-b663-aeed010410fa/da6eda02-def2-4de4-a1c2-aeed010456a1/podcast.rss",
       "itunesUrl": "https://podcasts.apple.com/us/podcast/bone-valley/id1643974551?uo=4",
       "artistUrl": null,
-      "overallRating": null,
-      "reviewText": null,
+      "overallRating": 2,
+      "reviewText": "First true crime podcast I listened to. ",
       "isFavorite": false,
       "addedAt": "2026-04-17T06:51:32.614Z",
-      "updatedAt": "2026-04-17T06:51:32.614Z",
+      "updatedAt": "2026-04-17T20:26:40.545Z",
       "customRatings": [],
       "favoriteEpisodes": []
     },
@@ -450,11 +459,11 @@
       "feedUrl": "https://access.acast.com/rss/62cff2d9d455860013698a7f",
       "itunesUrl": "https://podcasts.apple.com/us/podcast/the-prince/id1642926713?uo=4",
       "artistUrl": null,
-      "overallRating": null,
+      "overallRating": 3,
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2026-04-17T06:48:09.879Z",
-      "updatedAt": "2026-04-17T06:48:09.879Z",
+      "updatedAt": "2026-04-17T20:26:56.738Z",
       "customRatings": [],
       "favoriteEpisodes": []
     },
