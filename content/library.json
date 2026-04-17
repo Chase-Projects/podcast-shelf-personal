@@ -629,7 +629,7 @@
       "reviewText": null,
       "isFavorite": true,
       "addedAt": "2025-12-17T00:16:27.135Z",
-      "updatedAt": "2026-04-17T07:28:01.532Z",
+      "updatedAt": "2026-04-17T19:34:06.354Z",
       "customRatings": [
         {
           "category": "Hosts",
@@ -644,7 +644,24 @@
           "rating": 3
         }
       ],
-      "favoriteEpisodes": []
+      "favoriteEpisodes": [
+        {
+          "title": "Jerusalem Demsas on The Dispossessed, Gulliver's Travels, and Of Boys and Men",
+          "number": null,
+          "notes": null,
+          "addedAt": "2026-04-17T19:31:03.150Z",
+          "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/50/67/65/5067652c-550a-42c0-f3f6-3b347830ad91/mza_7571126844674721591.png/600x600bb.jpg",
+          "episodeUrl": "https://podcasts.apple.com/us/podcast/jerusalem-demsas-on-the-dispossessed-gullivers/id983795625?i=1000626953641&uo=4"
+        },
+        {
+          "title": "Richard Prum on Birds, Beauty, and Finding Your Own Way",
+          "number": null,
+          "notes": null,
+          "addedAt": "2026-04-17T19:31:31.063Z",
+          "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/f3/2a/10/f32a1086-eeea-6401-90a7-020f10ceeaa6/mza_11827498052824514212.jpg/600x600bb.jpg",
+          "episodeUrl": "https://podcasts.apple.com/us/podcast/richard-prum-on-birds-beauty-and-finding-your-own-way/id983795625?i=1000527356228&uo=4"
+        }
+      ]
     },
     {
       "itunesId": "1342003491",
@@ -658,9 +675,18 @@
       "reviewText": null,
       "isFavorite": true,
       "addedAt": "2025-12-17T00:18:31.893Z",
-      "updatedAt": "2025-12-17T00:37:47.356Z",
+      "updatedAt": "2026-04-17T19:29:35.515Z",
       "customRatings": [],
-      "favoriteEpisodes": []
+      "favoriteEpisodes": [
+        {
+          "title": "Hot Dog Eating Contest and Chemotherapy",
+          "number": null,
+          "notes": null,
+          "addedAt": "2026-04-17T19:29:35.515Z",
+          "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/b0/c3/3f/b0c33f24-b62c-bce1-284a-cf3b195c5d9a/mza_15297305691521873994.jpeg/600x600bb.jpg",
+          "episodeUrl": "https://podcasts.apple.com/us/podcast/hot-dog-eating-contest-and-chemotherapy/id1342003491?i=1000448103760&uo=4"
+        }
+      ]
     },
     {
       "itunesId": "1300382225",
@@ -903,9 +929,42 @@
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2025-12-17T00:19:29.961Z",
-      "updatedAt": "2026-04-17T08:08:07.018Z",
+      "updatedAt": "2026-04-17T19:36:05.068Z",
       "customRatings": [],
-      "favoriteEpisodes": []
+      "favoriteEpisodes": [
+        {
+          "title": "The American Accent Came First",
+          "number": null,
+          "notes": null,
+          "addedAt": "2026-04-17T19:34:25.231Z",
+          "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/22/7d/a7/227da71a-7662-d609-69ae-880511357f42/mza_4749907498345011781.jpeg/600x600bb.jpg",
+          "episodeUrl": "https://podcasts.apple.com/us/podcast/the-american-accent-came-first/id1576564760?i=1000716534010&uo=4"
+        },
+        {
+          "title": "Age, Color, Origin, Material",
+          "number": null,
+          "notes": null,
+          "addedAt": "2026-04-17T19:34:39.398Z",
+          "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/22/7d/a7/227da71a-7662-d609-69ae-880511357f42/mza_4749907498345011781.jpeg/600x600bb.jpg",
+          "episodeUrl": "https://podcasts.apple.com/us/podcast/age-color-origin-material/id1576564760?i=1000605055384&uo=4"
+        },
+        {
+          "title": "Throw Up, Turn Out & Believe",
+          "number": null,
+          "notes": null,
+          "addedAt": "2026-04-17T19:35:04.462Z",
+          "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/22/7d/a7/227da71a-7662-d609-69ae-880511357f42/mza_4749907498345011781.jpeg/600x600bb.jpg",
+          "episodeUrl": "https://podcasts.apple.com/us/podcast/throw-up-turn-out-believe/id1576564760?i=1000576285621&uo=4"
+        },
+        {
+          "title": "Does Language Affect Thought?",
+          "number": null,
+          "notes": null,
+          "addedAt": "2026-04-17T19:36:05.068Z",
+          "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/22/7d/a7/227da71a-7662-d609-69ae-880511357f42/mza_4749907498345011781.jpeg/600x600bb.jpg",
+          "episodeUrl": "https://podcasts.apple.com/us/podcast/does-language-affect-thought/id1576564760?i=1000738009898&uo=4"
+        }
+      ]
     },
     {
       "itunesId": "1516093381",
