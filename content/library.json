@@ -392,14 +392,23 @@
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2026-04-17T06:49:13.429Z",
-      "updatedAt": "2026-04-17T07:23:39.450Z",
+      "updatedAt": "2026-04-17T19:36:46.914Z",
       "customRatings": [
         {
           "category": "Ads",
           "rating": 0.5
         }
       ],
-      "favoriteEpisodes": []
+      "favoriteEpisodes": [
+        {
+          "title": "Tyler Cowen: On Choral Music - Deep Cuts and Listening",
+          "number": null,
+          "notes": null,
+          "addedAt": "2026-04-17T19:36:46.914Z",
+          "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/8c/b7/9e/8cb79e99-ca5c-7b0f-f00b-ff047bb9fce2/mza_10956699920341576569.png/600x600bb.jpg",
+          "episodeUrl": "https://podcasts.apple.com/us/podcast/tyler-cowen-on-choral-music-deep-cuts-and-listening/id1671669052?i=1000732265683&uo=4"
+        }
+      ]
     },
     {
       "itunesId": "1642926713",
@@ -700,9 +709,26 @@
       "reviewText": null,
       "isFavorite": true,
       "addedAt": "2025-12-17T00:17:59.179Z",
-      "updatedAt": "2025-12-17T00:37:43.730Z",
+      "updatedAt": "2026-04-17T19:39:32.666Z",
       "customRatings": [],
-      "favoriteEpisodes": []
+      "favoriteEpisodes": [
+        {
+          "title": "Time Has Stood Still: Philip Roth (1933–2018)",
+          "number": null,
+          "notes": null,
+          "addedAt": "2026-04-17T19:39:03.696Z",
+          "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts112/v4/5f/6c/dd/5f6cdde0-dbff-45e5-4f93-91521582fd9b/mza_140712055852557510.jpg/600x600bb.jpg",
+          "episodeUrl": "https://podcasts.apple.com/us/podcast/time-has-stood-still-philip-roth-1933-2018/id1300382225?i=1000412165740&uo=4"
+        },
+        {
+          "title": "God, Etc. (with Jesse Eisenberg, Benjamin Nugent, Rowan Ricardo Phillips, Kristen Dombek)",
+          "number": null,
+          "notes": null,
+          "addedAt": "2026-04-17T19:39:32.666Z",
+          "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts112/v4/cc/f2/d6/ccf2d656-c3ca-80f9-4729-314718187752/mza_16106793194257048935.jpg/600x600bb.jpg",
+          "episodeUrl": "https://podcasts.apple.com/us/podcast/god-etc-with-jesse-eisenberg-benjamin-nugent-rowan/id1300382225?i=1000400579620&uo=4"
+        }
+      ]
     },
     {
       "itunesId": "151230264",
@@ -860,9 +886,19 @@
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2025-12-17T00:18:45.776Z",
-      "updatedAt": "2025-12-17T00:35:26.051Z",
+      "updatedAt": "2026-04-17T19:40:09.183Z",
       "customRatings": [],
-      "favoriteEpisodes": []
+      "favoriteEpisodes": [
+        {
+          "title": "Philip Roth",
+          "number": null,
+          "notes": null,
+          "addedAt": "2026-04-17T19:40:07.895Z",
+          "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts115/v4/fa/eb/2f/faeb2f22-633d-feb2-96ab-8e1c1a31b037/mza_14423433058562631373.jpg/600x600bb.jpg",
+          "episodeUrl": "https://podcasts.apple.com/us/podcast/philip-roth/id1388460367?i=1000416209616&uo=4",
+          "isGlobalFavorite": true
+        }
+      ]
     },
     {
       "itunesId": "1746360591",
@@ -897,9 +933,43 @@
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2025-12-17T00:19:02.891Z",
-      "updatedAt": "2025-12-17T00:35:13.065Z",
+      "updatedAt": "2026-04-17T19:38:11.477Z",
       "customRatings": [],
-      "favoriteEpisodes": []
+      "favoriteEpisodes": [
+        {
+          "title": "A Primer on the Doomsday Argument (1999)",
+          "number": null,
+          "notes": null,
+          "addedAt": "2026-04-17T19:37:39.431Z",
+          "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts112/v4/32/89/c6/3289c6d4-d3ef-e947-49a1-412c5a68961a/mza_10284072872295322462.jpg/600x600bb.jpg",
+          "episodeUrl": "https://podcasts.apple.com/us/podcast/a-primer-on-the-doomsday-argument-1999/id1638302025?i=1000580764537&uo=4"
+        },
+        {
+          "title": "Letter from Utopia (2008)",
+          "number": null,
+          "notes": null,
+          "addedAt": "2026-04-17T19:37:50.684Z",
+          "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts112/v4/32/89/c6/3289c6d4-d3ef-e947-49a1-412c5a68961a/mza_10284072872295322462.jpg/600x600bb.jpg",
+          "episodeUrl": "https://podcasts.apple.com/us/podcast/letter-from-utopia-2008/id1638302025?i=1000577791708&uo=4",
+          "isGlobalFavorite": true
+        },
+        {
+          "title": "The Reversal Test: Eliminating Status Quo Bias in Applied Ethics (2006)",
+          "number": null,
+          "notes": null,
+          "addedAt": "2026-04-17T19:37:56.988Z",
+          "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts112/v4/32/89/c6/3289c6d4-d3ef-e947-49a1-412c5a68961a/mza_10284072872295322462.jpg/600x600bb.jpg",
+          "episodeUrl": "https://podcasts.apple.com/us/podcast/the-reversal-test-eliminating-status-quo-bias-in/id1638302025?i=1000575852552&uo=4"
+        },
+        {
+          "title": "The Fable of The Dragon Tyrant (2005)",
+          "number": null,
+          "notes": null,
+          "addedAt": "2026-04-17T19:38:03.938Z",
+          "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts112/v4/32/89/c6/3289c6d4-d3ef-e947-49a1-412c5a68961a/mza_10284072872295322462.jpg/600x600bb.jpg",
+          "episodeUrl": "https://podcasts.apple.com/us/podcast/the-fable-of-the-dragon-tyrant-2005/id1638302025?i=1000575345489&uo=4"
+        }
+      ]
     },
     {
       "itunesId": "1492928827",
