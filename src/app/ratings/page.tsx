@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState, Suspense } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { Loader2, ArrowLeft, Star } from 'lucide-react';
+import { Loader2, ArrowLeft } from 'lucide-react';
 import Header from '@/components/Header';
 import StarRating from '@/components/StarRating';
 import { LIBRARY_RAW_URL } from '@/lib/github';
@@ -59,6 +59,19 @@ function RatingsContent() {
     })).filter((t) => t.podcasts.length > 0);
   }, [library, category]);
 
+  useEffect(() => {
+    if (!library || tiers.length === 0) return;
+    const hash = window.location.hash.replace('#', '');
+    if (!hash.startsWith('tier-')) return;
+    const el = document.getElementById(hash);
+    if (el) {
+      const t = window.setTimeout(() => {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
+      return () => window.clearTimeout(t);
+    }
+  }, [library, tiers]);
+
   if (error) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -98,7 +111,7 @@ function RatingsContent() {
               href="/ratings"
               className={`px-2 py-1 rounded border ${
                 !category
-                  ? 'bg-accent text-background-tertiary border-accent'
+                  ? 'bg-accent text-background border-accent'
                   : 'border-border text-foreground hover:text-accent'
               }`}
             >
@@ -110,7 +123,7 @@ function RatingsContent() {
                 href={`/ratings?category=${encodeURIComponent(cat)}`}
                 className={`px-2 py-1 rounded border ${
                   category === cat
-                    ? 'bg-accent text-background-tertiary border-accent'
+                    ? 'bg-accent text-background border-accent'
                     : 'border-border text-foreground hover:text-accent'
                 }`}
               >
@@ -120,39 +133,34 @@ function RatingsContent() {
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-2 mb-8 sticky top-0 py-3 bg-background z-10 border-b border-border">
-          {tiers.map(({ tier, podcasts }) => {
-            const fullStars = Math.floor(tier);
-            const hasHalf = tier % 1 === 0.5;
-            return (
-              <a
-                key={tier}
-                href={`#tier-${tier}`}
-                className="flex items-center gap-1 text-xs px-2 py-1 rounded bg-background-secondary border border-border text-foreground hover:text-accent hover:border-accent transition-colors"
-              >
-                <span className="flex items-center text-star">
-                  {Array.from({ length: fullStars }).map((_, i) => (
-                    <Star key={i} size={12} fill="currentColor" strokeWidth={0} />
-                  ))}
-                  {hasHalf && (
-                    <span className="relative inline-block" style={{ width: 12, height: 12 }}>
-                      <Star
-                        size={12}
-                        className="absolute inset-0 text-star-empty"
-                        fill="currentColor"
-                        strokeWidth={0}
-                      />
-                      <span className="absolute inset-0 overflow-hidden" style={{ width: 6 }}>
-                        <Star size={12} fill="currentColor" strokeWidth={0} />
-                      </span>
-                    </span>
-                  )}
-                </span>
-                <span className="text-foreground">({podcasts.length})</span>
-              </a>
-            );
-          })}
-        </div>
+        {tiers.length > 0 && (
+          <div className="flex items-center gap-2 mb-8 sticky top-0 py-3 bg-background z-10 border-b border-border">
+            <label htmlFor="tier-jump" className="text-xs text-foreground">
+              Jump to
+            </label>
+            <select
+              id="tier-jump"
+              defaultValue=""
+              onChange={(e) => {
+                const v = e.target.value;
+                if (!v) return;
+                const el = document.getElementById(`tier-${v}`);
+                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                e.target.value = '';
+              }}
+              className="text-sm py-1.5 px-3 bg-background-secondary border border-border rounded"
+            >
+              <option value="" disabled>
+                Select rating...
+              </option>
+              {tiers.map(({ tier, podcasts }) => (
+                <option key={tier} value={tier}>
+                  {tier % 1 === 0.5 ? `${Math.floor(tier)}½` : tier} stars ({podcasts.length})
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
 
         {tiers.length === 0 ? (
           <div className="text-center py-16 bg-background-secondary rounded-lg">

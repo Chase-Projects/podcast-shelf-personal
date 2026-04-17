@@ -120,14 +120,22 @@ function AdminView({ pat, initialSha, onSignOut }: AdminViewProps) {
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (q.length < 2) return podcasts;
-    return podcasts.filter(
-      (p) =>
-        p.title.toLowerCase().includes(q) ||
-        p.author.toLowerCase().includes(q) ||
-        (p.reviewText && p.reviewText.toLowerCase().includes(q))
-    );
-  }, [podcasts, query]);
+    let list = podcasts;
+    if (ratingType !== 'overall') {
+      list = list.filter((p) =>
+        p.customRatings.some((cr) => cr.category === ratingType)
+      );
+    }
+    if (q.length >= 2) {
+      list = list.filter(
+        (p) =>
+          p.title.toLowerCase().includes(q) ||
+          p.author.toLowerCase().includes(q) ||
+          (p.reviewText && p.reviewText.toLowerCase().includes(q))
+      );
+    }
+    return list;
+  }, [podcasts, query, ratingType]);
 
   const sortedPodcasts = useMemo(() => {
     const getRating = (p: typeof filtered[0]) =>
@@ -258,20 +266,21 @@ function AdminView({ pat, initialSha, onSignOut }: AdminViewProps) {
               </Link>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              <Link
-                href="/ratings"
-                className="p-4 bg-background-secondary rounded-lg h-48 hover:bg-background-tertiary transition-colors"
-              >
+              <div className="p-4 bg-background-secondary rounded-lg h-48">
                 <RatingsChart ratings={overallRatings} title="Overall" height={100} />
-              </Link>
+              </div>
               {customRatingsData.map(({ name, ratings }) => (
-                <Link
+                <div
                   key={name}
-                  href={`/ratings?category=${encodeURIComponent(name)}`}
-                  className="p-4 bg-background-secondary rounded-lg h-48 hover:bg-background-tertiary transition-colors"
+                  className="p-4 bg-background-secondary rounded-lg h-48"
                 >
-                  <RatingsChart ratings={ratings} title={name} height={100} />
-                </Link>
+                  <RatingsChart
+                    ratings={ratings}
+                    title={name}
+                    height={100}
+                    category={name}
+                  />
+                </div>
               ))}
             </div>
           </section>
@@ -282,14 +291,14 @@ function AdminView({ pat, initialSha, onSignOut }: AdminViewProps) {
             <div className="relative flex-1 min-w-[240px] max-w-md">
               <Search
                 className="absolute left-3 top-1/2 -translate-y-1/2 text-foreground pointer-events-none"
-                size={16}
+                size={14}
               />
               <input
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search title, author, or review..."
-                className="w-full pl-10 pr-3 py-1.5 text-sm"
+                className="w-full pl-9 pr-3 py-1.5 text-sm"
               />
             </div>
             <SortControls
