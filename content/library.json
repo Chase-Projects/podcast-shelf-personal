@@ -684,8 +684,13 @@
       "reviewText": null,
       "isFavorite": true,
       "addedAt": "2025-12-17T00:18:31.893Z",
-      "updatedAt": "2026-04-17T19:29:35.515Z",
-      "customRatings": [],
+      "updatedAt": "2026-04-17T20:03:02.250Z",
+      "customRatings": [
+        {
+          "category": "Hosts",
+          "rating": 5
+        }
+      ],
       "favoriteEpisodes": [
         {
           "title": "Hot Dog Eating Contest and Chemotherapy",
@@ -1159,8 +1164,13 @@
       "reviewText": null,
       "isFavorite": true,
       "addedAt": "2025-12-17T00:19:51.788Z",
-      "updatedAt": "2026-04-17T19:14:48.087Z",
-      "customRatings": [],
+      "updatedAt": "2026-04-17T20:02:53.971Z",
+      "customRatings": [
+        {
+          "category": "Hosts",
+          "rating": 5
+        }
+      ],
       "favoriteEpisodes": [
         {
           "title": "Killing the ants",
@@ -1550,10 +1560,10 @@
       "itunesUrl": "https://podcasts.apple.com/us/podcast/80-000-hours-podcast/id1245002988?uo=4",
       "artistUrl": null,
       "overallRating": 4,
-      "reviewText": null,
+      "reviewText": "I’ve learned a lot listening to this podcast and the issues covered are extremely important. However, since this is the primary podcast focusing on these issues, it is crucial to make sure they are being broadcasted effectively.\n\nHere’s some improvements:\n\n1. Hosts must push back against guests. Often the hosts will agree and not question the difficult and sometimes dubious steps of the guests. \n\n2. Hosts should have more research into the guests’ topics. I’m sure there are folks in 80k that work in the same field as these guests. Have them host.\n\n3. Balance unrelated content. Some unrelated content helps bring in new listeners, especially when they are big names. Though it’s important not to bury issue focused episodes. (I’ve enjoyed linguists, historians, and philosophers ; though politicians are too vague and uninformative). This was a problem for older 80k, now more unrelated content but especially more content around non-AI would help attract and maintain listeners. I really like their animal welfare episodes which are now infrequent.\n\nI highly recommend listening to this podcast. My improvements don’t dis-recommend, but point to making  a frequently great podcast to a consistently great one.",
       "isFavorite": false,
       "addedAt": "2025-12-16T08:22:31.069Z",
-      "updatedAt": "2026-04-17T07:19:36.650Z",
+      "updatedAt": "2026-04-17T20:13:37.484Z",
       "customRatings": [
         {
           "category": "Hosts",
@@ -1574,6 +1584,23 @@
           "number": null,
           "notes": null,
           "addedAt": "2025-12-16T19:42:13.539Z"
+        },
+        {
+          "title": "#210 – Cameron Meyer Shorb on dismantling the myth that we can’t do anything to help wild animals",
+          "number": null,
+          "notes": null,
+          "addedAt": "2026-04-17T20:05:03.946Z",
+          "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/bc/07/3b/bc073b6a-b302-900a-98ea-ab1664d2cb7d/mza_16872095303698804317.jpg/600x600bb.jpg",
+          "episodeUrl": "https://podcasts.apple.com/us/podcast/210-cameron-meyer-shorb-on-dismantling-the-myth-that/id1245002988?i=1000678679910&uo=4"
+        },
+        {
+          "title": "#185 – Lewis Bollard on the 7 most promising ways to end factory farming, and whether AI is going to be good or bad for animals",
+          "number": null,
+          "notes": null,
+          "addedAt": "2026-04-17T20:05:54.938Z",
+          "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/9b/49/01/9b49013f-e6cd-c52d-6cad-64be01aa09be/mza_12673870005329113237.jpg/600x600bb.jpg",
+          "episodeUrl": "https://podcasts.apple.com/us/podcast/185-lewis-bollard-on-the-7-most-promising-ways-to-end/id1245002988?i=1000652896110&uo=4",
+          "isGlobalFavorite": true
         }
       ]
     }
