@@ -56,16 +56,16 @@ body {
   box-sizing: border-box;
 }
 
-a {
-  color: var(--accent);
-  text-decoration: none;
-}
-
-a:hover {
-  color: var(--accent-hover);
-}
-
 @layer base {
+  a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--accent-hover);
+  }
+
   input, textarea, select {
     background: var(--background-secondary);
     border: 1px solid var(--border);

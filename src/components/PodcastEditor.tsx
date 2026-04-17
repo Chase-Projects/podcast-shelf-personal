@@ -98,10 +98,12 @@ export default function PodcastEditor({ podcast, expanded, onToggle, highlightQu
                 />
               </div>
 
-              <div>
-                <label className="block text-sm text-foreground mb-2">Custom Ratings</label>
-                <CustomRatings itunesId={podcast.itunesId} ratings={podcast.customRatings} />
-              </div>
+              {(!readOnly || podcast.customRatings.length > 0) && (
+                <div>
+                  <label className="block text-sm text-foreground mb-2">Custom Ratings</label>
+                  <CustomRatings itunesId={podcast.itunesId} ratings={podcast.customRatings} />
+                </div>
+              )}
 
               {(!readOnly || reviewDraft) && (
                 <div>
@@ -124,15 +126,17 @@ export default function PodcastEditor({ podcast, expanded, onToggle, highlightQu
               )}
             </div>
 
-            <div>
-              <label className="block text-sm text-foreground mb-2">Favorite Episodes</label>
-              <FavoriteEpisodes
-                itunesId={podcast.itunesId}
-                podcastName={podcast.title}
-                podcastArtwork={podcast.artworkUrl}
-                episodes={podcast.favoriteEpisodes}
-              />
-            </div>
+            {(!readOnly || podcast.favoriteEpisodes.length > 0) && (
+              <div>
+                <label className="block text-sm text-foreground mb-2">Favorite Episodes</label>
+                <FavoriteEpisodes
+                  itunesId={podcast.itunesId}
+                  podcastName={podcast.title}
+                  podcastArtwork={podcast.artworkUrl}
+                  episodes={podcast.favoriteEpisodes}
+                />
+              </div>
+            )}
           </div>
 
           {!readOnly ? (

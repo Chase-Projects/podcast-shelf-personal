@@ -46,6 +46,7 @@ export default function FavoriteEpisodes({
   const [title, setTitle] = useState('');
   const [episodeNumber, setEpisodeNumber] = useState('');
   const [notes, setNotes] = useState('');
+  const [manualUrl, setManualUrl] = useState('');
   const [editingReview, setEditingReview] = useState<string | null>(null);
   const [reviewDraft, setReviewDraft] = useState('');
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -71,6 +72,15 @@ export default function FavoriteEpisodes({
     if (!isAdding || manualMode) return;
     if (loadedLimit === 0) void loadEpisodes(PAGE_SIZE);
   }, [isAdding, manualMode, loadedLimit, loadEpisodes]);
+
+  // When the user starts searching, pull the full iTunes lookup (up to 200)
+  // so results don't require scrolling to reveal older episodes first.
+  useEffect(() => {
+    if (!isAdding || manualMode) return;
+    if (searchQuery.trim().length < 2) return;
+    if (loadedLimit >= 200) return;
+    void loadEpisodes(200);
+  }, [isAdding, manualMode, searchQuery, loadedLimit, loadEpisodes]);
 
   const filtered = searchQuery.trim().length >= 2
     ? allEpisodes.filter((e) => {
@@ -116,10 +126,12 @@ export default function FavoriteEpisodes({
       number: episodeNumber.trim() || null,
       notes: notes.trim() || null,
       addedAt: new Date().toISOString(),
+      episodeUrl: manualUrl.trim() || null,
     });
     setTitle('');
     setEpisodeNumber('');
     setNotes('');
+    setManualUrl('');
     setIsAdding(false);
     setManualMode(false);
   };
@@ -311,18 +323,18 @@ export default function FavoriteEpisodes({
                     <button
                       key={episode.id}
                       onClick={() => handleAddFromSearch(episode)}
-                      className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-background-tertiary transition-colors border-b border-border last:border-b-0"
+                      className="w-full flex items-start gap-3 text-left px-3 py-2 hover:bg-background-tertiary transition-colors border-b border-border last:border-b-0"
                     >
                       <Image
                         src={art}
                         alt={episode.title}
                         width={40}
                         height={40}
-                        className="rounded flex-shrink-0"
+                        className="rounded flex-shrink-0 mt-0.5"
                         unoptimized
                       />
                       <div className="min-w-0 flex-1">
-                        <p className="text-sm text-foreground-bright truncate">
+                        <p className="text-sm text-foreground-bright break-words">
                           {episode.title}
                         </p>
                         {episode.releaseDate && (
@@ -346,7 +358,9 @@ export default function FavoriteEpisodes({
                 )}
               </div>
               <p className="text-[11px] text-foreground italic">
-                Subscriber-only episodes won&apos;t appear here — use &ldquo;Add manually&rdquo;.
+                Showing the most recent {Math.min(loadedLimit, 200)} episodes
+                (iTunes caps lookups around 200). Subscriber-only episodes
+                won&apos;t appear here — use &ldquo;Add manually&rdquo;.
               </p>
             </>
           ) : (
@@ -364,6 +378,13 @@ export default function FavoriteEpisodes({
                 value={episodeNumber}
                 onChange={(e) => setEpisodeNumber(e.target.value)}
                 placeholder="Episode number (optional)"
+                className="w-full text-sm"
+              />
+              <input
+                type="url"
+                value={manualUrl}
+                onChange={(e) => setManualUrl(e.target.value)}
+                placeholder="Episode URL (optional) — e.g. Patreon / private feed"
                 className="w-full text-sm"
               />
               <textarea
@@ -388,6 +409,10 @@ export default function FavoriteEpisodes({
                   Back to Search
                 </button>
               </div>
+              <p className="text-[11px] text-foreground italic">
+                Paste a Patreon / private feed URL to link the episode. Leave
+                blank to fall back to an Apple Podcasts search.
+              </p>
             </>
           )}
           <button
@@ -398,6 +423,7 @@ export default function FavoriteEpisodes({
               setTitle('');
               setEpisodeNumber('');
               setNotes('');
+              setManualUrl('');
               setLimit(PAGE_SIZE);
             }}
             className="w-full py-1.5 text-foreground hover:text-foreground-bright text-sm"

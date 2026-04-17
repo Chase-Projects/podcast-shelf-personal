@@ -58,7 +58,7 @@ function HomeView() {
   const searchParams = useSearchParams();
   const focusId = searchParams.get('focus');
   const [expandedId, setExpandedId] = useState<string | null>(focusId);
-  const [ordering, setOrdering] = useState<Ordering>('dateAltered');
+  const [ordering, setOrdering] = useState<Ordering>('bestToWorst');
   const [ratingType, setRatingType] = useState<RatingType>('overall');
   const [query, setQuery] = useState('');
   const focusRef = useRef<HTMLDivElement>(null);
@@ -100,10 +100,21 @@ function HomeView() {
   }, [podcasts, query, ratingType]);
 
   const sortedPodcasts = useMemo(() => {
-    const getRating = (p: typeof filtered[0]) =>
-      ratingType === 'overall'
-        ? p.overallRating
-        : p.customRatings.find((cr) => cr.category === ratingType)?.rating ?? null;
+    const WEIGHT_DIVISOR = 5.01;
+    const getRating = (p: typeof filtered[0]) => {
+      if (ratingType !== 'overall') {
+        return p.customRatings.find((cr) => cr.category === ratingType)?.rating ?? null;
+      }
+      if (p.overallRating === null) return null;
+      // Weighted: overall + (1/m) * mean(customs) so custom ratings break
+      // ties between equal overall scores without swapping different overalls.
+      const customVals = p.customRatings.map((cr) => cr.rating);
+      const meanCustom =
+        customVals.length > 0
+          ? customVals.reduce((sum, r) => sum + r, 0) / customVals.length
+          : 0;
+      return p.overallRating + meanCustom / WEIGHT_DIVISOR;
+    };
     const sorted = [...filtered];
     sorted.sort((a, b) => {
       switch (ordering) {
