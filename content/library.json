@@ -3,6 +3,38 @@
   "displayName": "admin",
   "podcasts": [
     {
+      "itunesId": "manual-1776457258186",
+      "title": "A.R.T Artists Real Talk",
+      "author": "Think Tank Gallery",
+      "artworkUrl": "https://cdn-images-3.listennotes.com/podcasts/art-artists-real-talk-think-tank-gallery-0O69xnhZu1-.1400x1400.jpg",
+      "feedUrl": "https://rss.libsyn.com/shows/87805/destinations/429201.xml",
+      "itunesUrl": "https://www.listennotes.com/podcasts/art-artists-real-talk-think-tank-gallery-0O69xnhZu1-/",
+      "artistUrl": null,
+      "overallRating": 2,
+      "reviewText": "This was the first podcast I listened to. It is now nowhere on iTunes and I can only find one reference to it online. But it was first. ",
+      "isFavorite": false,
+      "addedAt": "2026-04-17T20:20:58.187Z",
+      "updatedAt": "2026-04-17T20:22:13.705Z",
+      "customRatings": [],
+      "favoriteEpisodes": []
+    },
+    {
+      "itunesId": "manual-1776456924911",
+      "title": "The Story of Classical",
+      "author": "Apple Music",
+      "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/PodcastSource211/v4/2a/4b/7f/2a4b7fd8-dd6f-1d27-a048-3d3bf32a738c/c34b1657-d46e-448f-b4d9-c5d56f5707e7.png/300x300bb.webp",
+      "feedUrl": null,
+      "itunesUrl": "https://podcasts.apple.com/us/podcast/the-story-of-classical/id1727191760",
+      "artistUrl": null,
+      "overallRating": 4,
+      "reviewText": null,
+      "isFavorite": false,
+      "addedAt": "2026-04-17T20:15:24.911Z",
+      "updatedAt": "2026-04-17T20:15:38.727Z",
+      "customRatings": [],
+      "favoriteEpisodes": []
+    },
+    {
       "itunesId": "1436346407",
       "title": "City Arts & Lectures",
       "author": "City Arts & Lectures",
