@@ -1030,30 +1030,34 @@
       "reviewText": null,
       "isFavorite": true,
       "addedAt": "2025-12-17T00:19:51.788Z",
-      "updatedAt": "2026-04-17T07:21:56.001Z",
+      "updatedAt": "2026-04-17T19:14:48.087Z",
       "customRatings": [],
       "favoriteEpisodes": [
         {
           "title": "Killing the ants",
           "number": null,
           "notes": null,
-          "addedAt": "2026-04-17T01:59:16.141Z",
-          "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/7d/e8/b7/7de8b7e2-a5a4-d83f-c28c-c8bf8f184fd2/mza_13334260826432355993.jpg/600x600bb.jpg"
+          "addedAt": "2026-04-17T19:14:35.708Z",
+          "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/7d/e8/b7/7de8b7e2-a5a4-d83f-c28c-c8bf8f184fd2/mza_13334260826432355993.jpg/600x600bb.jpg",
+          "episodeUrl": "https://podcasts.apple.com/us/podcast/killing-the-ants/id1648436675?i=1000581638090&uo=4",
+          "isGlobalFavorite": true
         },
         {
           "title": "Seeing more whole",
           "number": null,
           "notes": null,
-          "addedAt": "2026-04-17T01:59:24.125Z",
+          "addedAt": "2026-04-17T19:14:40.846Z",
           "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/db/00/76/db0076af-3e89-025b-0116-cda72c32036c/mza_5524744143404807431.jpg/600x600bb.jpg",
+          "episodeUrl": "https://podcasts.apple.com/us/podcast/seeing-more-whole/id1648436675?i=1000600084827&uo=4",
           "isGlobalFavorite": true
         },
         {
           "title": "Why should ethical anti-realists do ethics?",
           "number": null,
           "notes": null,
-          "addedAt": "2026-04-17T01:59:31.360Z",
-          "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/47/fc/c0/47fcc08c-5535-8263-3fc8-08c76a0f6844/mza_7762510579478878656.jpg/600x600bb.jpg"
+          "addedAt": "2026-04-17T19:14:45.983Z",
+          "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/47/fc/c0/47fcc08c-5535-8263-3fc8-08c76a0f6844/mza_7762510579478878656.jpg/600x600bb.jpg",
+          "episodeUrl": "https://podcasts.apple.com/us/podcast/why-should-ethical-anti-realists-do-ethics/id1648436675?i=1000599868257&uo=4"
         }
       ]
     },
