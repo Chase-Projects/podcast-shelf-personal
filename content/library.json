@@ -3,6 +3,166 @@
   "displayName": "admin",
   "podcasts": [
     {
+      "itunesId": "1436346407",
+      "title": "City Arts & Lectures",
+      "author": "City Arts & Lectures",
+      "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts125/v4/7f/3d/f4/7f3df436-5609-eb7e-0055-d4ba20bc02e6/mza_4601074200507054221.jpg/600x600bb.jpg",
+      "feedUrl": "https://feeds.feedburner.com/CityArts",
+      "itunesUrl": "https://podcasts.apple.com/us/podcast/city-arts-lectures/id1436346407?uo=4",
+      "artistUrl": null,
+      "overallRating": 3.5,
+      "reviewText": "The quality of this podcast is entirely the guests. I do really like the Stephen Breyer episodes ",
+      "isFavorite": false,
+      "addedAt": "2026-04-17T07:35:12.748Z",
+      "updatedAt": "2026-04-17T07:43:51.682Z",
+      "customRatings": [],
+      "favoriteEpisodes": []
+    },
+    {
+      "itunesId": "1198009325",
+      "title": "You're Doing Just Fine",
+      "author": "You're Doing Just Fine",
+      "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts115/v4/62/e0/83/62e08357-c095-eb67-3acc-f5a7fb84ad5a/mza_3434993576000360766.jpg/600x600bb.jpg",
+      "feedUrl": "https://feeds.soundcloud.com/users/soundcloud:users:282849241/sounds.rss",
+      "itunesUrl": "https://podcasts.apple.com/us/podcast/youre-doing-just-fine/id1198009325?uo=4",
+      "artistUrl": null,
+      "overallRating": null,
+      "reviewText": null,
+      "isFavorite": false,
+      "addedAt": "2026-04-17T07:34:07.765Z",
+      "updatedAt": "2026-04-17T07:34:07.765Z",
+      "customRatings": [],
+      "favoriteEpisodes": []
+    },
+    {
+      "itunesId": "1391561169",
+      "title": "eating alone in my car",
+      "author": "So Sad Today",
+      "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts115/v4/fc/f5/8d/fcf58d19-ae6c-1027-fabe-43863ac31eb5/mza_6347551951818686490.jpg/600x600bb.jpg",
+      "feedUrl": "https://anchor.fm/s/48615ec/podcast/rss",
+      "itunesUrl": "https://podcasts.apple.com/us/podcast/eating-alone-in-my-car/id1391561169?uo=4",
+      "artistUrl": null,
+      "overallRating": 0.5,
+      "reviewText": "self-disrecommending title",
+      "isFavorite": false,
+      "addedAt": "2026-04-17T07:33:54.965Z",
+      "updatedAt": "2026-04-17T07:43:15.181Z",
+      "customRatings": [],
+      "favoriteEpisodes": []
+    },
+    {
+      "itunesId": "957430475",
+      "title": "The Allusionist",
+      "author": "Helen Zaltzman",
+      "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/d2/ee/57/d2ee5738-0ae8-cb97-2a15-8cefab5598c0/mza_18103885882368855276.jpeg/600x600bb.jpg",
+      "feedUrl": "https://rss.art19.com/the-allusionist",
+      "itunesUrl": "https://podcasts.apple.com/us/podcast/the-allusionist/id957430475?uo=4",
+      "artistUrl": null,
+      "overallRating": null,
+      "reviewText": null,
+      "isFavorite": false,
+      "addedAt": "2026-04-17T07:33:26.415Z",
+      "updatedAt": "2026-04-17T07:33:26.415Z",
+      "customRatings": [],
+      "favoriteEpisodes": []
+    },
+    {
+      "itunesId": "1507423923",
+      "title": "Rabbit Hole",
+      "author": "The New York Times",
+      "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/8c/5a/a7/8c5aa731-f3cd-c214-968f-d70c1de62a67/mza_11141039469126456067.jpeg/600x600bb.jpg",
+      "feedUrl": "https://feeds.simplecast.com/rRMR9QHI",
+      "itunesUrl": "https://podcasts.apple.com/us/podcast/rabbit-hole/id1507423923?uo=4",
+      "artistUrl": "https://podcasts.apple.com/us/artist/the-new-york-times/121664449?uo=4",
+      "overallRating": null,
+      "reviewText": null,
+      "isFavorite": false,
+      "addedAt": "2026-04-17T07:33:15.965Z",
+      "updatedAt": "2026-04-17T07:33:15.965Z",
+      "customRatings": [],
+      "favoriteEpisodes": []
+    },
+    {
+      "itunesId": "152249110",
+      "title": "Radiolab",
+      "author": "WNYC Studios",
+      "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/2b/b2/4d/2bb24d28-f3bb-916f-6bf3-9e125ba5219b/mza_4476298389845914795.jpg/600x600bb.jpg",
+      "feedUrl": "https://feeds.simplecast.com/EmVW7VGp",
+      "itunesUrl": "https://podcasts.apple.com/us/podcast/radiolab/id152249110?uo=4",
+      "artistUrl": "https://podcasts.apple.com/us/artist/wnyc/127981066?uo=4",
+      "overallRating": 3,
+      "reviewText": null,
+      "isFavorite": false,
+      "addedAt": "2026-04-17T07:32:55.200Z",
+      "updatedAt": "2026-04-17T07:35:54.833Z",
+      "customRatings": [],
+      "favoriteEpisodes": []
+    },
+    {
+      "itunesId": "1470490447",
+      "title": "Dilemma Podcast",
+      "author": "Jay Shapiro",
+      "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts124/v4/a6/16/92/a6169262-690b-c06d-ea1c-88026a1c87b9/mza_12878248524668062838.jpg/600x600bb.jpg",
+      "feedUrl": "https://anchor.fm/s/c4db244/podcast/rss",
+      "itunesUrl": "https://podcasts.apple.com/us/podcast/dilemma-podcast/id1470490447?uo=4",
+      "artistUrl": null,
+      "overallRating": null,
+      "reviewText": null,
+      "isFavorite": false,
+      "addedAt": "2026-04-17T07:32:46.383Z",
+      "updatedAt": "2026-04-17T07:44:23.332Z",
+      "customRatings": [],
+      "favoriteEpisodes": []
+    },
+    {
+      "itunesId": "1594607300",
+      "title": "Examining Ethics",
+      "author": "Prindle Institute",
+      "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts126/v4/6e/b9/93/6eb993f0-adb9-6068-b163-be25ca6acd50/mza_13980544258082154029.jpg/600x600bb.jpg",
+      "feedUrl": "https://www.prindleinstitute.org/feed/podcast/",
+      "itunesUrl": "https://podcasts.apple.com/us/podcast/examining-ethics/id1594607300?uo=4",
+      "artistUrl": null,
+      "overallRating": null,
+      "reviewText": null,
+      "isFavorite": false,
+      "addedAt": "2026-04-17T07:31:30.849Z",
+      "updatedAt": "2026-04-17T07:31:30.849Z",
+      "customRatings": [],
+      "favoriteEpisodes": []
+    },
+    {
+      "itunesId": "1117202653",
+      "title": "More Perfect",
+      "author": "WNYC Studios",
+      "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts116/v4/80/6b/34/806b348f-a544-08b2-5370-e9639e967a67/mza_17989489965136474242.jpeg/600x600bb.jpg",
+      "feedUrl": "https://feeds.simplecast.com/lQwwDIs1",
+      "itunesUrl": "https://podcasts.apple.com/us/podcast/more-perfect/id1117202653?uo=4",
+      "artistUrl": "https://podcasts.apple.com/us/artist/wnyc/127981066?uo=4",
+      "overallRating": null,
+      "reviewText": null,
+      "isFavorite": false,
+      "addedAt": "2026-04-17T07:31:20.599Z",
+      "updatedAt": "2026-04-17T07:31:20.599Z",
+      "customRatings": [],
+      "favoriteEpisodes": []
+    },
+    {
+      "itunesId": "956404060",
+      "title": "The UnMute Podcast",
+      "author": "Myisha Cherry",
+      "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts125/v4/1c/8e/db/1c8edb87-309a-a95f-72cd-6ec01328a6ec/mza_1685504346357747556.jpg/600x600bb.jpg",
+      "feedUrl": "https://feed.podbean.com/unmutetalk/feed.xml",
+      "itunesUrl": "https://podcasts.apple.com/us/podcast/the-unmute-podcast/id956404060?uo=4",
+      "artistUrl": null,
+      "overallRating": null,
+      "reviewText": null,
+      "isFavorite": false,
+      "addedAt": "2026-04-17T07:31:01.017Z",
+      "updatedAt": "2026-04-17T07:31:01.017Z",
+      "customRatings": [],
+      "favoriteEpisodes": []
+    },
+    {
       "itunesId": "557975157",
       "title": "Very Bad Wizards",
       "author": "Tamler Sommers & David Pizarro",
@@ -11,10 +171,10 @@
       "itunesUrl": "https://podcasts.apple.com/us/podcast/very-bad-wizards/id557975157?uo=4",
       "artistUrl": null,
       "overallRating": 1,
-      "reviewText": null,
+      "reviewText": "I was recommended this by a teacher in High School. I found the hosts annoying and I learned nothing. ",
       "isFavorite": false,
       "addedAt": "2026-04-17T07:17:15.299Z",
-      "updatedAt": "2026-04-17T07:17:30.916Z",
+      "updatedAt": "2026-04-17T07:50:47.850Z",
       "customRatings": [
         {
           "category": "Hosts",
@@ -32,10 +192,10 @@
       "itunesUrl": "https://podcasts.apple.com/us/podcast/levar-burton-reads/id1244649384?uo=4",
       "artistUrl": "https://podcasts.apple.com/us/artist/stitcher/1233903520?uo=4",
       "overallRating": 3.5,
-      "reviewText": null,
+      "reviewText": "Ok stories. Nice narration. ",
       "isFavorite": false,
       "addedAt": "2026-04-17T07:05:18.681Z",
-      "updatedAt": "2026-04-17T07:17:58.965Z",
+      "updatedAt": "2026-04-17T07:58:52.132Z",
       "customRatings": [],
       "favoriteEpisodes": []
     },
@@ -184,7 +344,7 @@
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2026-04-17T06:53:53.498Z",
-      "updatedAt": "2026-04-17T07:20:36.650Z",
+      "updatedAt": "2026-04-17T07:54:17.183Z",
       "customRatings": [],
       "favoriteEpisodes": []
     },
@@ -314,10 +474,10 @@
       "itunesUrl": "https://podcasts.apple.com/us/podcast/editors-picks-from-the-economist/id313848583?uo=4",
       "artistUrl": "https://podcasts.apple.com/us/artist/the-economist/272651214?uo=4",
       "overallRating": 3,
-      "reviewText": null,
+      "reviewText": "20% are good picks. Not much here that isn't covered by other Economists podcasts.",
       "isFavorite": false,
       "addedAt": "2026-04-17T06:45:01.262Z",
-      "updatedAt": "2026-04-17T07:21:00.033Z",
+      "updatedAt": "2026-04-17T08:06:18.103Z",
       "customRatings": [],
       "favoriteEpisodes": []
     },
@@ -346,10 +506,10 @@
       "itunesUrl": "https://podcasts.apple.com/us/podcast/hello-puzzlers/id1709071922?uo=4",
       "artistUrl": null,
       "overallRating": 2.5,
-      "reviewText": null,
+      "reviewText": "You know the friend who orders a sandwich but removes all the ingredients except bread and protein? They seem to savor their meal, but are seemingly missing its major components. This podcast is the sandwich. The ads, the fluff, the guest introductions crucially must be skipped. Then it's great.",
       "isFavorite": false,
       "addedAt": "2026-04-17T06:44:01.644Z",
-      "updatedAt": "2026-04-17T07:23:54.532Z",
+      "updatedAt": "2026-04-17T07:46:51.867Z",
       "customRatings": [
         {
           "category": "Ads",
@@ -383,11 +543,16 @@
       "itunesUrl": "https://podcasts.apple.com/us/podcast/money-stuff-the-podcast/id1739582836?uo=4",
       "artistUrl": null,
       "overallRating": 2,
-      "reviewText": null,
+      "reviewText": "The hosts seem smart but I hate their voice and how they talk. Maybe read them instead. I have learned some from this podcast but this podcast was ultimately unhelpful since it's executive purpose isn't education.",
       "isFavorite": false,
       "addedAt": "2025-12-17T00:41:39.380Z",
-      "updatedAt": "2025-12-17T02:28:34.800Z",
-      "customRatings": [],
+      "updatedAt": "2026-04-17T07:41:31.199Z",
+      "customRatings": [
+        {
+          "category": "Hosts",
+          "rating": 1
+        }
+      ],
       "favoriteEpisodes": []
     },
     {
@@ -399,14 +564,18 @@
       "itunesUrl": "https://podcasts.apple.com/us/podcast/risky-business-with-nate-silver-and-maria-konnikova/id1743213122?uo=4",
       "artistUrl": null,
       "overallRating": 2.5,
-      "reviewText": null,
+      "reviewText": "I'd read Nate Silver instead. I don't think he comes across clearly on this podcast. Valuable to listen 3 months before a US election perhaps.",
       "isFavorite": false,
       "addedAt": "2025-12-17T00:43:35.500Z",
-      "updatedAt": "2026-04-17T07:22:57.649Z",
+      "updatedAt": "2026-04-17T07:42:43.432Z",
       "customRatings": [
         {
           "category": "Hosts",
           "rating": 2
+        },
+        {
+          "category": "Ads",
+          "rating": 0.5
         }
       ],
       "favoriteEpisodes": []
@@ -423,7 +592,7 @@
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2025-12-17T00:40:07.392Z",
-      "updatedAt": "2025-12-17T00:40:20.461Z",
+      "updatedAt": "2026-04-17T07:54:32.717Z",
       "customRatings": [],
       "favoriteEpisodes": []
     },
@@ -460,8 +629,21 @@
       "reviewText": null,
       "isFavorite": true,
       "addedAt": "2025-12-17T00:16:27.135Z",
-      "updatedAt": "2025-12-17T00:37:57.274Z",
-      "customRatings": [],
+      "updatedAt": "2026-04-17T07:28:01.532Z",
+      "customRatings": [
+        {
+          "category": "Hosts",
+          "rating": 4.5
+        },
+        {
+          "category": "Format",
+          "rating": 5
+        },
+        {
+          "category": "Guests",
+          "rating": 3
+        }
+      ],
       "favoriteEpisodes": []
     },
     {
@@ -556,7 +738,7 @@
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2025-12-17T00:17:17.532Z",
-      "updatedAt": "2025-12-17T00:35:58.766Z",
+      "updatedAt": "2026-04-17T07:54:44.100Z",
       "customRatings": [],
       "favoriteEpisodes": []
     },
@@ -588,7 +770,7 @@
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2025-12-17T00:18:09.123Z",
-      "updatedAt": "2026-04-17T07:24:33.815Z",
+      "updatedAt": "2026-04-17T07:58:11.248Z",
       "customRatings": [],
       "favoriteEpisodes": []
     },
@@ -617,10 +799,10 @@
       "itunesUrl": "https://podcasts.apple.com/us/podcast/the-economics-show/id1746352576?uo=4",
       "artistUrl": null,
       "overallRating": 4,
-      "reviewText": null,
+      "reviewText": "In some other econ podcasts, I feel like the hosts are lacking with their explanations and lazy with their format. Chad Jones and Soumaya Keynes are not. They are great and I've learned a lot.",
       "isFavorite": false,
       "addedAt": "2025-12-17T00:18:22.623Z",
-      "updatedAt": "2025-12-17T00:35:39.099Z",
+      "updatedAt": "2026-04-17T07:57:30.200Z",
       "customRatings": [],
       "favoriteEpisodes": []
     },
@@ -737,8 +919,13 @@
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2025-12-17T00:16:15.775Z",
-      "updatedAt": "2025-12-17T00:34:42.510Z",
-      "customRatings": [],
+      "updatedAt": "2026-04-17T08:05:11.552Z",
+      "customRatings": [
+        {
+          "category": "Hosts",
+          "rating": 3
+        }
+      ],
       "favoriteEpisodes": []
     },
     {
@@ -946,7 +1133,7 @@
       "reviewText": null,
       "isFavorite": false,
       "addedAt": "2025-12-17T00:20:39.542Z",
-      "updatedAt": "2026-04-17T07:21:14.349Z",
+      "updatedAt": "2026-04-17T07:55:46.183Z",
       "customRatings": [
         {
           "category": "Hosts",
@@ -964,10 +1151,10 @@
       "itunesUrl": "https://podcasts.apple.com/us/podcast/clearer-thinking-with-spencer-greenberg/id1535406429?uo=4",
       "artistUrl": null,
       "overallRating": 3,
-      "reviewText": null,
+      "reviewText": "I think this is a great podcast, especially for those in need of thinking more clearly. I find the format to now be repetitive and want deeper exploration of the topics. I think the clearer thinking is clear, but somewhat bland and abstract. This does have a place in my heart as one of the good early podcasts I listened to.",
       "isFavorite": false,
       "addedAt": "2025-12-17T00:20:52.593Z",
-      "updatedAt": "2025-12-17T00:33:11.854Z",
+      "updatedAt": "2026-04-17T08:03:33.269Z",
       "customRatings": [],
       "favoriteEpisodes": []
     },
@@ -996,10 +1183,10 @@
       "itunesUrl": "https://podcasts.apple.com/us/podcast/the-ezra-klein-show/id1548604447?uo=4",
       "artistUrl": "https://podcasts.apple.com/us/artist/the-new-york-times/121664449?uo=4",
       "overallRating": 2.5,
-      "reviewText": null,
+      "reviewText": "A podcast with many words and tones and thoughts. I do think Ezra and his guests, especially politicians, end up speaking a lot but saying very little. However, this podcast has helped me when I've struggle to think about difficult political topics; aided by Ezra's detachment.  ",
       "isFavorite": false,
       "addedAt": "2025-12-17T00:21:08.480Z",
-      "updatedAt": "2025-12-17T00:32:56.797Z",
+      "updatedAt": "2026-04-17T07:50:18.068Z",
       "customRatings": [],
       "favoriteEpisodes": []
     },
@@ -1012,10 +1199,10 @@
       "itunesUrl": "https://podcasts.apple.com/us/podcast/on-being-with-krista-tippett/id150892556?uo=4",
       "artistUrl": "https://podcasts.apple.com/us/artist/on-being-studios/825090678?uo=4",
       "overallRating": 2,
-      "reviewText": null,
+      "reviewText": "This podcast feels like Joe Rogan if he was very kind and calm.",
       "isFavorite": false,
       "addedAt": "2025-12-17T00:21:37.575Z",
-      "updatedAt": "2026-04-17T07:22:12.566Z",
+      "updatedAt": "2026-04-17T07:52:46.200Z",
       "customRatings": [],
       "favoriteEpisodes": []
     },
